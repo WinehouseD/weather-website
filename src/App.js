@@ -10,10 +10,10 @@ function App() {
 
   const [town, setTown] = useState("");
 
-  // const key = "59265a5cb4f663b8cf3898b2c0a2c2df";
+  const key = "59265a5cb4f663b8cf3898b2c0a2c2df";
   // const url = `https://api.openweathermap.org/data/2.5/weather?q=${town}&units=metric&exclude=hourly, daily&appid=${key}`;
 
-  const url = `api.openweathermap.org/data/2.5/forecast?q=london&appid=59265a5cb4f663b8cf3898b2c0a2c2df`;
+  const url = `api.openweathermap.org/data/2.5/forecast?q=${town}&appid=${key}`;
 
   const [time, setTime] = useState(new Date());
 
@@ -55,8 +55,8 @@ function App() {
           {data.main ? (
             <h1>
               {data.main.temp.toFixed()}
-              <h5>°C</h5>
-              <img className="weather_icon" src="icons/rain.png" alt="icon" />
+              <h5>°С</h5>
+              <img className="weather_icon" src="icons/04d.png" alt="icon" />
             </h1>
           ) : null}
         </div>
