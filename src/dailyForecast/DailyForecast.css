@@ -1,0 +1,21 @@
+.daily-forecast {
+  position: fixed;
+  right: 0;
+  padding: 0.3rem 2rem 3.5rem 2rem;
+  padding-top: 3vh;
+  border: 1px solid black;
+  width: 450px;
+  height: 150px;
+  border-radius: 25px;
+  margin-top: 10vh;
+  margin-right: 13vh;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.titleDayly {
+  text-align: left;
+  padding-top: 1.2vh;
+  padding-bottom: 1.2vh;
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+}

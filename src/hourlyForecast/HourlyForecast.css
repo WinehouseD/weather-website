@@ -1,0 +1,59 @@
+.hourly-forecast {
+  position: fixed;
+  right: 0;
+  padding: 0.3rem 2rem 3.5rem 2rem;
+  padding-top: 3vh;
+  border: 1px solid black;
+  width: 450px;
+  height: 150px;
+  border-radius: 25px;
+  margin-top: 10vh;
+  margin-right: 13vh;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.titleHour {
+  text-align: left;
+  padding-top: 1.2vh;
+  padding-bottom: 1.2vh;
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  text-align: center;
+  padding-bottom: 1.2vh;
+  padding-top: 1.2vh;
+  font-size: 1.2rem;
+  padding-right: 10px;
+}
+
+.temperature {
+  padding-right: 10px;
+}
+
+.temperature span {
+  position: absolute;
+  font-size: 0.7rem;
+  padding-top: 3px;
+}
+
+.iconHourly {
+  padding: 1vh 0 1vh 0;
+}
+
+.precipitation {
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: center;
+  padding-top: 2.5px;
+}
+
+.waterDrop {
+  height: 0.9rem;
+  width: 0.9rem;
+  padding-top: 2px;
+}

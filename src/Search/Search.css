@@ -1,0 +1,28 @@
+.inp-field {
+  text-align: center;
+  padding: 1rem;
+}
+
+.inp-field input {
+  padding: 0.7rem 1.5rem;
+  font-size: 1.2rem;
+  border-radius: 15px;
+  border: 1px solid rgb(128, 128, 128);
+  background: rgb(0, 0, 0);
+  opacity: 0.3;
+  color: #8f8f8f;
+  margin-top: 0.3rem;
+  text-transform: capitalize;
+}
+
+.searchBtn {
+  height: 25px;
+  width: 25px;
+  cursor: pointer;
+  padding-left: 5px;
+  transition: transform 0.1s;
+}
+
+.searchBtn:hover {
+  transform: scale(1.1);
+}

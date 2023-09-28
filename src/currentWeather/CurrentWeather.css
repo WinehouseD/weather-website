@@ -1,0 +1,55 @@
+.container {
+  margin-top: 40vh;
+  margin-left: 13vh;
+}
+
+.city p {
+  text-align: left;
+  font-size: 3rem;
+  padding-left: 1.9rem;
+  font-weight: 900;
+}
+
+.temp h1 {
+  text-align: left;
+  font-size: 6.6rem;
+  padding-left: 1.9rem;
+  display: flex;
+  flex-direction: row;
+}
+
+.temp h1 p {
+  text-align: left;
+  font-size: 2.2rem;
+  padding-left: 0.3rem;
+  padding-top: 1.25rem;
+}
+
+.desc p {
+  font-size: 2rem;
+  text-align: left;
+  padding-left: 1.9rem;
+}
+
+.weather_icon {
+  height: 4rem;
+  width: 4rem;
+  padding-top: 1.2rem;
+  padding-left: 0.6rem;
+}
+
+.additional-info {
+  margin: 0 10vh 0 3vh;
+  display: flex;
+  flex-direction: row;
+  padding-top: 3px;
+}
+
+.feels p,
+.humidity p,
+.wind p,
+.time p {
+  font-size: 1.3rem;
+  padding-left: 11px;
+  padding-right: 0;
+}

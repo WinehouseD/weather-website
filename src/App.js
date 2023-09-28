@@ -1,101 +1,106 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Search from "./Search/Search";
+import Geolocation from "./Geolocation";
+import CurrentWeather from "./currentWeather/CurrentWeather";
+import HourlyForecast from "./hourlyForecast/HourlyForecast";
+import ErrorBoundary from "./ErrorBoundary ";
 
 function App() {
-  const [data, setData] = useState(() => {
-    const localValue = localStorage.getItem("result");
-    if (localValue == null) return [];
-    return JSON.parse(localValue);
-  });
-
+  const [currentWeather, setCurrentWeather] = useState(null);
+  const [hourlyForecast, setHourlyForecast] = useState([]);
   const [town, setTown] = useState("");
+  const [loadingLocation, setLoadingLocation] = useState(false);
 
   const key = "59265a5cb4f663b8cf3898b2c0a2c2df";
-  // const url = `https://api.openweathermap.org/data/2.5/weather?q=${town}&units=metric&exclude=hourly, daily&appid=${key}`;
 
-  const url = `api.openweathermap.org/data/2.5/forecast?q=${town}&appid=${key}`;
+  const fetchCurrentWeather = () => {
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${town}&units=metric&appid=${key}`;
 
-  const [time, setTime] = useState(new Date());
+    axios
+      .get(url)
+      .then((response) => {
+        setCurrentWeather(response.data);
+        localStorage.setItem("currentWeather", JSON.stringify(response.data));
+      })
+      .catch((error) => console.log("Error:", error));
+  };
 
-  useEffect(() => {
-    setInterval(() => setTime(new Date()), 1000);
-  }, []);
+  const fetchHourlyForecast = () => {
+    const url2 = `https://api.openweathermap.org/data/2.5/forecast?q=${town}&appid=${key}&units=metric`;
 
-  const searchWeather = (event) => {
-    if (event.key === "Enter") {
-      axios.get(url).then((response) => {
-        setData(response.data);
-      });
-      setTown("");
-    }
+    axios
+      .get(url2)
+      .then((response) => {
+        setHourlyForecast(response.data.list);
+        localStorage.setItem(
+          "hourlyForecast",
+          JSON.stringify(response.data.list)
+        );
+      })
+      .catch((error) => console.error("Error:", error));
   };
 
   useEffect(() => {
-    localStorage.setItem("result", JSON.stringify(data));
-  }, [data]);
+    const storedCurrentWeather = JSON.parse(
+      localStorage.getItem("currentWeather")
+    );
+    if (storedCurrentWeather) {
+      setCurrentWeather(storedCurrentWeather);
+    }
+
+    const storedHourlyForecast = JSON.parse(
+      localStorage.getItem("hourlyForecast")
+    );
+    if (storedHourlyForecast) {
+      setHourlyForecast(storedHourlyForecast);
+    }
+  }, []);
+
+  const handleSearch = () => {
+    fetchCurrentWeather();
+    fetchHourlyForecast();
+    setTown("");
+  };
+
+  const handleLocationWeather = (currentData, hourlyData) => {
+    setCurrentWeather(currentData);
+    setHourlyForecast(hourlyData.list);
+    localStorage.setItem("currentWeather", JSON.stringify(currentData));
+    localStorage.setItem("hourlyForecast", JSON.stringify(hourlyData.list));
+  };
+
+  useEffect(() => {
+    if (loadingLocation) {
+      Geolocation.getWeatherData(handleLocationWeather);
+    }
+  }, [loadingLocation]);
+
+  useEffect(() => {
+    const storedCurrentWeather = JSON.parse(
+      localStorage.getItem("currentWeather")
+    );
+    if (storedCurrentWeather) {
+      setCurrentWeather(storedCurrentWeather);
+    }
+
+    const storedHourlyForecast = JSON.parse(
+      localStorage.getItem("hourlyForecast")
+    );
+    if (storedHourlyForecast) {
+      setHourlyForecast(storedHourlyForecast);
+    }
+  }, []);
 
   return (
-    <div className="app">
-      <div className="inp-field">
-        <input
-          type="text"
-          value={town}
-          onChange={(event) => setTown(event.target.value)}
-          placeholder="Enter location"
-          onKeyDown={searchWeather}
-        />
+    <ErrorBoundary>
+      <div className="app">
+        <Search town={town} setTown={setTown} handleSearch={handleSearch} />
+        <Geolocation onWeatherData={handleLocationWeather} />
+        <HourlyForecast hourlyForecast={hourlyForecast} />
+        <CurrentWeather currentWeather={currentWeather} />
       </div>
-      <div className="container">
-        <div className="header">
-          <div className="city">
-            <p>{data.name}</p>
-          </div>
-        </div>
-        <div className="temp">
-          {data.main ? (
-            <h1>
-              {data.main.temp.toFixed()}
-              <h5>°С</h5>
-              <img className="weather_icon" src="icons/04d.png" alt="icon" />
-            </h1>
-          ) : null}
-        </div>
-        <div className="desc">
-          {data.weather ? <p>{data.weather[0].main}</p> : null}
-        </div>
-      </div>
-      {data.name !== undefined && (
-        <div className="footer">
-          <div className="time">
-            <p className="bold">
-              {time.toLocaleTimeString([], {
-                hour: "2-digit",
-                minute: "2-digit",
-              })}
-            </p>
-          </div>
-          <div className="feels">
-            {data.main ? (
-              <p className="bold">
-                {"L:" + `${data.main.feels_like.toFixed()} ` + "°C "}
-              </p>
-            ) : null}
-          </div>
-          <div className="humidity">
-            {data.main ? (
-              <p className="bold">{"H:" + `${data.main.humidity}` + "%"}</p>
-            ) : null}
-          </div>
-          <div className="wind">
-            {data.wind ? (
-              <p className="bold">
-                {"W:" + `${data.wind.speed.toFixed()} ` + "M/C"}
-              </p>
-            ) : null}
-          </div>
-        </div>
-      )}
-    </div>
+    </ErrorBoundary>
   );
 }
 
