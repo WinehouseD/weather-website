@@ -3,11 +3,10 @@
   right: 0;
   padding: 0.3rem 2rem 3.5rem 2rem;
   padding-top: 3vh;
-  border: 1px solid black;
   width: 450px;
   height: 150px;
   border-radius: 25px;
-  margin-top: 10vh;
+  margin-top: 5vh;
   margin-right: 13vh;
   background: rgba(0, 0, 0, 0.2);
 }
@@ -43,6 +42,11 @@
 
 .iconHourly {
   padding: 1vh 0 1vh 0;
+  transition: transform 0.1s;
+}
+
+.iconHourly:hover {
+  transform: scale(1.1);
 }
 
 .precipitation {

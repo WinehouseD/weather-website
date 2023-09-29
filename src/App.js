@@ -1,21 +1,29 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import ErrorBoundary from "./ErrorBoundary ";
+import Loading from "./Loading";
 import Search from "./Search/Search";
 import Geolocation from "./Geolocation";
 import CurrentWeather from "./currentWeather/CurrentWeather";
 import HourlyForecast from "./hourlyForecast/HourlyForecast";
-import ErrorBoundary from "./ErrorBoundary ";
+import { WEATHER_KEY, WEATHER_URL } from "./servises/api";
+// import DailyForecast from "./dailyForecast/DailyForecast";
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
   const [currentWeather, setCurrentWeather] = useState(null);
   const [hourlyForecast, setHourlyForecast] = useState([]);
   const [town, setTown] = useState("");
   const [loadingLocation, setLoadingLocation] = useState(false);
 
-  const key = "59265a5cb4f663b8cf3898b2c0a2c2df";
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  });
 
   const fetchCurrentWeather = () => {
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${town}&units=metric&appid=${key}`;
+    const url = `${WEATHER_URL}/weather?q=${town}&units=metric&appid=${WEATHER_KEY}`;
 
     axios
       .get(url)
@@ -27,7 +35,7 @@ function App() {
   };
 
   const fetchHourlyForecast = () => {
-    const url2 = `https://api.openweathermap.org/data/2.5/forecast?q=${town}&appid=${key}&units=metric`;
+    const url2 = `${WEATHER_URL}/forecast?q=${town}&appid=${WEATHER_KEY}&units=metric`;
 
     axios
       .get(url2)
@@ -61,6 +69,7 @@ function App() {
     fetchCurrentWeather();
     fetchHourlyForecast();
     setTown("");
+    setLoadingLocation(false);
   };
 
   const handleLocationWeather = (currentData, hourlyData) => {
@@ -95,10 +104,18 @@ function App() {
   return (
     <ErrorBoundary>
       <div className="app">
-        <Search town={town} setTown={setTown} handleSearch={handleSearch} />
-        <Geolocation onWeatherData={handleLocationWeather} />
-        <HourlyForecast hourlyForecast={hourlyForecast} />
-        <CurrentWeather currentWeather={currentWeather} />
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <>
+            <img className="logo" src="icons/logo.png" alt="logo"></img>
+            <Search town={town} setTown={setTown} handleSearch={handleSearch} />
+            <Geolocation onWeatherData={handleLocationWeather} />
+            <HourlyForecast hourlyForecast={hourlyForecast} />
+            <CurrentWeather currentWeather={currentWeather} />
+            {/* <DailyForecast dailyForecast={hourlyForecast} /> */}
+          </>
+        )}
       </div>
     </ErrorBoundary>
   );

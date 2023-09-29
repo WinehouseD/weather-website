@@ -1,6 +1,7 @@
 .container {
   margin-top: 40vh;
   margin-left: 13vh;
+  position: fixed;
 }
 
 .city p {
@@ -36,6 +37,11 @@
   width: 4rem;
   padding-top: 1.2rem;
   padding-left: 0.6rem;
+  transition: transform 0.1s;
+}
+
+.weather_icon:hover {
+  transform: scale(1.1);
 }
 
 .additional-info {

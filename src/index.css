@@ -39,14 +39,96 @@
   height: 100%;
 }
 
+.logo {
+  position: fixed;
+  width: 10rem;
+  top: 0;
+  left: 0;
+  margin-top: 1.7rem;
+  margin-left: 1.7rem;
+}
+
 .geo_icon {
-  display: flex;
+  position: fixed;
   height: 25px;
   width: 25px;
+  right: 0;
+  top: 0;
+  margin-top: 1.7rem;
+  margin-right: 1.7rem;
   cursor: pointer;
   transition: transform 0.1s;
 }
 
 .geo_icon:hover {
   transform: scale(1.1);
+}
+
+.loader {
+  font-size: 25px;
+  position: relative;
+  width: 4em;
+  height: 1em;
+  margin: 40% auto;
+}
+
+.title {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: fixed;
+  width: 40rem;
+}
+
+.dot {
+  width: 1em;
+  height: 1em;
+  border-radius: 0.5em;
+  background: #ffffff;
+  position: absolute;
+  animation-duration: 0.5s;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+}
+
+.dot1,
+.dot2 {
+  left: 0;
+}
+
+.dot3 {
+  left: 1.5em;
+}
+
+.dot4 {
+  left: 3em;
+}
+
+@keyframes reveal {
+  from {
+    transform: scale(0.001);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes slide {
+  to {
+    transform: translateX(1.5em);
+  }
+}
+
+.dot1 {
+  animation-name: reveal;
+}
+
+.dot2,
+.dot3 {
+  animation-name: slide;
+}
+
+.dot4 {
+  animation-name: reveal;
+  animation-direction: reverse;
 }

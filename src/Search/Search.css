@@ -19,8 +19,10 @@
   height: 25px;
   width: 25px;
   cursor: pointer;
-  padding-left: 5px;
+  padding-left: 3px;
   transition: transform 0.1s;
+  position: fixed;
+  padding-top: 0.8rem;
 }
 
 .searchBtn:hover {

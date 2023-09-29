@@ -1,21 +1,46 @@
 .daily-forecast {
   position: fixed;
   right: 0;
-  padding: 0.3rem 2rem 3.5rem 2rem;
-  padding-top: 3vh;
-  border: 1px solid black;
+  bottom: 0;
+  padding: 0.3rem 2rem 2rem 2rem;
   width: 450px;
-  height: 150px;
+  height: 300px;
   border-radius: 25px;
-  margin-top: 10vh;
+  margin-bottom: 5vh;
   margin-right: 13vh;
   background: rgba(0, 0, 0, 0.2);
 }
 
-.titleDayly {
+.titleDaily {
   text-align: left;
   padding-top: 1.2vh;
   padding-bottom: 1.2vh;
   font-size: 1.4rem;
   letter-spacing: 1px;
+}
+
+.dayFirst {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  text-align: left;
+  padding-top: 1.2vh;
+  font-size: 1.2rem;
+  padding-right: 10px;
+}
+
+.iconDaily {
+  padding-top: 0.8vh;
+  height: 32px;
+  width: 32px;
+  transition: transform 0.1s;
+}
+
+.iconDaily:hover {
+  transform: scale(1.1);
+}
+
+.min-max {
+  height: 20px;
+  width: 50px;
 }
