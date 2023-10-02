@@ -42,7 +42,7 @@ const HourlyForecast = ({ hourlyForecast }) => {
                     alt="water-drop"
                   ></img>
                   <div>
-                    {data.pop === 0
+                    {data.pop === 0 || data.pop === 1
                       ? "0%"
                       : data.pop.toFixed(2).split(".")[1] + "%"}
                   </div>

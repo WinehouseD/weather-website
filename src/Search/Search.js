@@ -1,7 +1,7 @@
 import React from "react";
 import "./Search.css";
 
-function Search({ town, setTown, handleSearch }) {
+function Search({ town, setTown, setLat, setLon, handleSearch }) {
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       handleSearch();
