@@ -37,9 +37,8 @@
 }
 
 .iconDaily {
-  padding-top: 0.8vh;
-  height: 32px;
-  width: 32px;
+  height: 2.35rem;
+  width: 2.35rem;
   transition: transform 0.1s;
 }
 
@@ -57,7 +56,18 @@
   padding-top: 3px;
 }
 
+.detailsIcon {
+  width: 2rem;
+  transition: transform 0.1s;
+}
+
+.detailsIcon:hover {
+  transform: scale(1.1);
+}
+
 .popup {
+  display: flex;
+  flex-direction: column;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -75,23 +85,38 @@
   font-size: 1.4rem;
   letter-spacing: 1px;
   padding-bottom: 1.2vh;
+  font-weight: bold;
 }
 
-.popup-content {
-  padding-top: 1.2vh;
+.add-info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.2rem;
 }
 
 .fl p,
 .hum p,
 .ws p,
-.pres p {
-  font-size: 1.1rem;
+.pres p,
+prec p {
+  font-size: 1.15rem;
 }
 
 .fl span {
   position: absolute;
-  font-size: 0.7rem;
-  padding-top: 1.5px;
+  font-size: 0.8rem;
+  padding-top: 0.3px;
+}
+
+.details-icon {
+  transition: transform 0.1s;
+  width: 2.3rem;
+}
+
+.details-icon:hover {
+  transform: scale(1.1);
 }
 
 .closeBtn {
@@ -101,6 +126,8 @@
   margin-top: 1.3rem;
   margin-right: 1.3rem;
   cursor: pointer;
+  width: 1.8rem;
+  transition: transform 0.1s;
 }
 
 .closeBtn:hover {

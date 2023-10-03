@@ -33,10 +33,9 @@
 }
 
 .weather_icon {
-  height: 4rem;
-  width: 4rem;
-  padding-top: 1.2rem;
-  padding-left: 0.6rem;
+  height: 4.5rem;
+  width: 4.5rem;
+  padding-top: 0.8rem;
   transition: transform 0.1s;
 }
 
@@ -51,11 +50,29 @@
   padding-top: 3px;
 }
 
-.feels p,
-.humidity p,
-.wind p,
+.sunrise p,
+.sunset p,
 .time p {
   font-size: 1.3rem;
   padding-left: 11px;
   padding-right: 0;
+}
+
+.sunrise {
+  display: flex;
+}
+
+.sunset {
+  display: flex;
+}
+
+.sunIcon {
+  position: relative;
+  width: 42px;
+  margin-left: 8px;
+  bottom: 8px;
+}
+
+.sunIcon:hover {
+  transform: scale(1.1);
 }

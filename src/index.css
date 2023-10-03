@@ -48,10 +48,14 @@
   margin-left: 1.7rem;
 }
 
+.logo:hover {
+  transform: scale(1.1);
+}
+
 .geo_icon {
   position: fixed;
-  height: 25px;
-  width: 25px;
+  height: 27px;
+  width: 27px;
   right: 0;
   top: 0;
   margin-top: 1.7rem;

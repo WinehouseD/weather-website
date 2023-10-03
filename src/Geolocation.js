@@ -61,7 +61,7 @@ const Geolocation = ({ onWeatherData }) => {
     <div>
       <img
         className="geo_icon"
-        src="icons/location.png"
+        src="icons/location.svg"
         onClick={fetchWeatherByLocation}
         disabled={loading}
         alt="geo_icon"

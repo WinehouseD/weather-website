@@ -51,7 +51,7 @@ function App() {
       .catch((error) => console.error("Error:", error));
   };
 
-  const fetchDailyForecast = () => {
+  const fetchDailyForecast = (town) => {
     const url3 = `${WEATHER_URL}/forecast?q=${town}&appid=${WEATHER_KEY}&units=metric`;
 
     axios
@@ -92,23 +92,18 @@ function App() {
   const handleSearch = () => {
     fetchCurrentWeather();
     fetchHourlyForecast();
-    fetchDailyForecast();
+    fetchDailyForecast(town);
     setTown("");
     setLoadingLocation(false);
   };
 
-  const handleLocationWeather = (currentData, hourlyData, dailyData) => {
+  const handleLocationWeather = (currentData, hourlyData) => {
     setCurrentWeather(currentData);
     setHourlyForecast(hourlyData.list);
-    if (dailyData && dailyData.list) {
-      const filteredDailyData = dailyData.list.filter(
-        (item, index) => index % 8 === 0
-      );
-      setDailyForecast(filteredDailyData);
-      localStorage.setItem("dailyForecast", JSON.stringify(filteredDailyData));
-    }
     localStorage.setItem("currentWeather", JSON.stringify(currentData));
     localStorage.setItem("hourlyForecast", JSON.stringify(hourlyData.list));
+    const cityName = currentData.name;
+    fetchDailyForecast(cityName);
   };
 
   useEffect(() => {

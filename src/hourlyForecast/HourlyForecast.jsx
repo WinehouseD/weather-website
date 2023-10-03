@@ -3,6 +3,10 @@ import moment from "moment";
 import "./HourlyForecast.css";
 
 const HourlyForecast = ({ hourlyForecast }) => {
+  if (!hourlyForecast) {
+    return null;
+  }
+
   return (
     <div className="hourly-forecast">
       <h1 className="titleHour">Hourly Forecast</h1>
@@ -19,7 +23,7 @@ const HourlyForecast = ({ hourlyForecast }) => {
                 <img
                   alt="icon"
                   className="iconHourly"
-                  src={`icons/${data.weather[0].icon}.png`}
+                  src={`icons/${data.weather[0].icon}.svg`}
                   data-toggle="tooltip"
                   title={data.weather[0].description}
                 />
@@ -38,7 +42,7 @@ const HourlyForecast = ({ hourlyForecast }) => {
                 >
                   <img
                     className="waterDrop"
-                    src="icons/water-drop.png"
+                    src="icons/water-drop.svg"
                     alt="water-drop"
                   ></img>
                   <div>

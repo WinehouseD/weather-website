@@ -38,28 +38,27 @@ const DailyForecast = ({ dailyForecast, selectedDay, setSelectedDay }) => {
           <div
             className="forecastDaily"
             key={idx}
-            onClick={() => openPopup(item)} // Open pop-up when the day element is clicked
+            onClick={() => openPopup(item)}
           >
             <div className="name">
               {dayName} {dayOfMonth}
             </div>
             <img
               className="iconDaily"
-              src={`icons/${item.weather[0].icon}.png`}
+              src={`icons/${item.weather[0].icon}.svg`}
               alt="weather"
+              data-toggle="tooltip"
+              title={item.weather[0].description}
             />
-            <div className="temps">
+            <div className="temps" data-toggle="tooltip" title="Temperature">
               {Math.round(item.main.temp)}
               <span>°C</span>
             </div>
-            <div className="precipitation">
-              <img
-                className="precip"
-                src="icons/water-drop.png"
-                alt="water-drop"
-              />
-              {item.rain ? item.rain["3h"] : 0} mm
-            </div>
+            <img
+              className="detailsIcon"
+              src="icons/details.svg"
+              alt="details"
+            />
           </div>
         );
       })}
@@ -67,27 +66,55 @@ const DailyForecast = ({ dailyForecast, selectedDay, setSelectedDay }) => {
         <div className="popup">
           <div className="popup-content">
             <img
+              data-toggle="tooltip"
+              title="Close"
               className="closeBtn"
-              src="icons/close-button.png"
+              src="icons/close-button.svg"
               alt="close"
               onClick={closePopup}
             />
             <div className="main-title">Day Details</div>
             <hr />
-            <div className="fl">
-              <p>
-                Feels like: {selectedDay.main.feels_like.toFixed()}
-                <span>°C</span>
-              </p>
-            </div>
-            <div className="hum">
-              <p>Humidity: {selectedDay.main.humidity}%</p>
-            </div>
-            <div className="ws">
-              <p>Wind speed: {selectedDay.wind.speed.toFixed()} m/s</p>
-            </div>
-            <div className="pres">
-              <p>Pressure: {selectedDay.main.pressure.toFixed()} mb</p>
+            <div className="add-info">
+              <div className="fl" data-toggle="tooltip" title="Feels like">
+                <img
+                  className="details-icon"
+                  src="icons/thermometer.svg"
+                  alt="thermometer"
+                />
+                <p>
+                  {selectedDay.main.feels_like.toFixed()}
+                  <span>°C</span>
+                </p>
+              </div>
+              <div className="hum" data-toggle="tooltip" title="Humidity">
+                <img
+                  className="details-icon"
+                  src="icons/humidity.svg"
+                  alt="humidity"
+                />
+                <p>{selectedDay.main.humidity}%</p>
+              </div>
+              <div className="ws" data-toggle="tooltip" title="Wind speed">
+                <img className="details-icon" src="icons/wind.svg" alt="wind" />
+                <p>{selectedDay.wind.speed.toFixed()} m/s</p>
+              </div>
+              <div className="pres" data-toggle="tooltip" title="Pressure">
+                <img
+                  className="details-icon"
+                  src="icons/meter.svg"
+                  alt="meter"
+                />
+                <p>{selectedDay.main.pressure.toFixed()} mb</p>
+              </div>
+              <div className="prec" data-toggle="tooltip" title="Precipitation">
+                <img
+                  className="details-icon"
+                  src="icons/water-drop.svg"
+                  alt="water-drop"
+                />
+                <p> {selectedDay.rain ? selectedDay.rain["3h"] : 0} mm</p>
+              </div>
             </div>
           </div>
         </div>

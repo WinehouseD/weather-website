@@ -1,7 +1,7 @@
 import React from "react";
 import "./Search.css";
 
-function Search({ town, setTown, setLat, setLon, handleSearch }) {
+function Search({ town, setTown, handleSearch }) {
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       handleSearch();
@@ -15,12 +15,12 @@ function Search({ town, setTown, setLat, setLon, handleSearch }) {
           type="text"
           value={town}
           onChange={(event) => setTown(event.target.value)}
-          placeholder="Enter location"
+          placeholder="Enter location EN/UA"
           onKeyDown={handleKeyDown}
         />
         <img
           className="searchBtn"
-          src="icons/search.png"
+          src="icons/search.svg"
           onClick={handleSearch}
           alt="search"
           data-toggle="tooltip"

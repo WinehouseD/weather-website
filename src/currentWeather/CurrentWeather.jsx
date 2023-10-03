@@ -7,15 +7,15 @@ const CurrentWeather = ({ currentWeather }) => {
     return null;
   }
 
-  const { main, weather, name, dt, wind, sys } = currentWeather;
+  const { main, weather, name, dt, sys } = currentWeather;
   const temperature = main.temp.toFixed();
   const description = weather[0].main;
   const cityName = name;
   const countryName = sys.country;
   const date = moment.unix(dt).format("ddd Do (MMM)");
-  const feelsLike = main.feels_like.toFixed();
-  const humidity = main.humidity;
-  const windSpeed = wind.speed.toFixed();
+
+  const sunriseTime = moment.unix(sys.sunrise).format("HH:mm");
+  const sunsetTime = moment.unix(sys.sunset).format("HH:mm");
 
   return (
     <div className="container">
@@ -34,7 +34,7 @@ const CurrentWeather = ({ currentWeather }) => {
             <img
               alt="icon"
               className="weather_icon"
-              src={`icons/${weather[0].icon}.png`}
+              src={`icons/${weather[0].icon}.svg`}
               data-toggle="tooltip"
               title="Description"
             />
@@ -46,16 +46,15 @@ const CurrentWeather = ({ currentWeather }) => {
       </div>
       <div className="additional-info">
         <div className="time" data-toggle="tooltip" title="Current date">
-          <p className="bold">{date}</p>
+          <p>{date}</p>
         </div>
-        <div className="feels" data-toggle="tooltip" title="Feels like">
-          <p>{`L: ${feelsLike}°C`}</p>
+        <div className="sunrise" data-toggle="tooltip" title="Sunrise">
+          <img className="sunIcon" src="icons/sunrise.svg" alt="sunrise" />
+          <p>{sunriseTime}</p>
         </div>
-        <div className="humidity" data-toggle="tooltip" title="Humidity">
-          <p>{`H: ${humidity}%`}</p>
-        </div>
-        <div className="wind" data-toggle="tooltip" title="Wind speed">
-          <p>{`W: ${windSpeed} M/S`}</p>
+        <div className="sunset" data-toggle="tooltip" title="Sunset">
+          <img className="sunIcon" src="icons/sunset.svg" alt="sunset" />
+          <p>{sunsetTime}</p>
         </div>
       </div>
     </div>
