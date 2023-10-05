@@ -3,19 +3,17 @@
   right: 0;
   padding: 0.3rem 2rem 3.5rem 2rem;
   padding-top: 3vh;
-  width: 450px;
-  height: 150px;
+  width: 28.1rem;
+  height: 9.4rem;
   border-radius: 25px;
-  margin-top: 5vh;
-  margin-right: 13vh;
+  margin: 5vh 13vh 0 0;
   background: rgba(0, 0, 0, 0.2);
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
 }
 
 .titleHour {
   text-align: left;
-  padding-top: 1.2vh;
-  padding-bottom: 1.2vh;
+  padding: 1.2vh 0;
   font-size: 1.4rem;
   letter-spacing: 1px;
 }
@@ -25,14 +23,12 @@
   flex-direction: row;
   justify-content: space-between;
   text-align: center;
-  padding-bottom: 1.2vh;
-  padding-top: 1.2vh;
+  padding: 1.2vh 0.6rem 1.2rem 0;
   font-size: 1.2rem;
-  padding-right: 10px;
 }
 
 .temperature {
-  padding-right: 10px;
+  padding-right: 0.6rem;
 }
 
 .temperature span {
@@ -55,11 +51,11 @@
   font-size: 0.9rem;
   display: flex;
   justify-content: center;
-  padding-top: 2.5px;
+  padding-top: 0.16rem;
 }
 
 .waterDrop {
   height: 0.9rem;
   width: 0.9rem;
-  padding-top: 2px;
+  padding-top: 0.12rem;
 }

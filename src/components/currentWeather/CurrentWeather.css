@@ -1,6 +1,5 @@
 .container {
-  margin-top: 40vh;
-  margin-left: 13vh;
+  margin: 40vh 0 0 13vh;
   position: fixed;
 }
 
@@ -12,18 +11,17 @@
 }
 
 .temp h1 {
+  display: flex;
   text-align: left;
   font-size: 6.6rem;
   padding-left: 1.9rem;
-  display: flex;
   flex-direction: row;
 }
 
 .temp h1 p {
   text-align: left;
   font-size: 2.2rem;
-  padding-left: 0.3rem;
-  padding-top: 1.25rem;
+  padding: 1.25rem 0 0 0.3rem;
 }
 
 .desc p {
@@ -39,10 +37,6 @@
   transition: transform 0.1s;
 }
 
-.weather_icon:hover {
-  transform: scale(1.1);
-}
-
 .additional-info {
   margin: 0 10vh 0 3vh;
   display: flex;
@@ -54,14 +48,10 @@
 .sunset p,
 .time p {
   font-size: 1.3rem;
-  padding-left: 11px;
-  padding-right: 0;
+  padding: 0 0 0 0.7rem;
 }
 
-.sunrise {
-  display: flex;
-}
-
+.sunrise,
 .sunset {
   display: flex;
 }
@@ -69,10 +59,11 @@
 .sunIcon {
   position: relative;
   width: 42px;
-  margin-left: 8px;
   bottom: 8px;
+  margin-left: 8px;
 }
 
+.weather_icon:hover,
 .sunIcon:hover {
   transform: scale(1.1);
 }

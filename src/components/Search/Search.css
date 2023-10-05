@@ -9,20 +9,18 @@
   border-radius: 15px;
   border: 1px solid rgb(128, 128, 128);
   background: rgb(0, 0, 0);
-  opacity: 0.3;
+  opacity: 0.45;
   color: #8f8f8f;
   margin-top: 0.3rem;
   text-transform: capitalize;
 }
 
 .searchBtn {
-  height: 25px;
   width: 25px;
   cursor: pointer;
-  padding-left: 3px;
+  padding: 0.8rem 0 0 0.19rem;
   transition: transform 0.1s;
   position: fixed;
-  padding-top: 0.8rem;
 }
 
 .searchBtn:hover {

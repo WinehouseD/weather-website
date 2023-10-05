@@ -3,10 +3,9 @@
   right: 0;
   bottom: 0;
   padding: 0.3rem 2rem 2rem 2rem;
-  width: 450px;
+  width: 28.1rem;
   border-radius: 25px;
-  margin-bottom: 5vh;
-  margin-right: 13vh;
+  margin: 0 13vh 5vh 0;
   background: rgba(0, 0, 0, 0.2);
   padding-top: 3vh;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
@@ -14,20 +13,17 @@
 
 .titleDaily {
   text-align: left;
-  padding-top: 1.2vh;
-  padding-bottom: 1.2vh;
-  font-size: 1.4rem;
   letter-spacing: 1px;
+  font-size: 1.4rem;
+  padding: 1.2vh 0;
 }
 
 .forecastDaily {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 1.2vh;
+  padding: 1.2vh 0.3rem 0;
   font-size: 1.2rem;
-  padding-right: 5px;
-  padding-left: 5px;
 }
 
 .forecastDaily:hover {
@@ -40,10 +36,6 @@
   height: 2.35rem;
   width: 2.35rem;
   transition: transform 0.1s;
-}
-
-.iconDaily:hover {
-  transform: scale(1.1);
 }
 
 .temps {
@@ -61,17 +53,13 @@
   transition: transform 0.1s;
 }
 
-.detailsIcon:hover {
-  transform: scale(1.1);
-}
-
 .popup {
   display: flex;
   flex-direction: column;
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 350px;
+  width: 22rem;
   background: rgba(0, 0, 0, 0.8);
   transform: translate(-50%, -50%);
   padding: 3rem;
@@ -115,21 +103,19 @@ prec p {
   width: 2.3rem;
 }
 
-.details-icon:hover {
-  transform: scale(1.1);
-}
-
 .closeBtn {
   position: fixed;
   right: 0;
   top: 0;
-  margin-top: 1.3rem;
-  margin-right: 1.3rem;
+  margin: 1.3rem 1.3rem 0 0;
   cursor: pointer;
   width: 1.8rem;
   transition: transform 0.1s;
 }
 
-.closeBtn:hover {
+.closeBtn:hover,
+.iconDaily:hover,
+.detailsIcon:hover,
+.details-icon:hover {
   transform: scale(1.1);
 }

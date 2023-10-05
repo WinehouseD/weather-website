@@ -1,21 +1,21 @@
 import { useState, useEffect } from "react";
-import { WEATHER_KEY, WEATHER_URL } from "./servises/api";
+import { WEATHER_KEY, WEATHER_URL } from "./services/api";
 import axios from "axios";
 import ErrorBoundary from "./ErrorBoundary ";
 import Loading from "./Loading";
-import Search from "./Search/Search";
+import Search from "./components/Search/Search";
 import Geolocation from "./Geolocation";
-import CurrentWeather from "./currentWeather/CurrentWeather";
-import HourlyForecast from "./hourlyForecast/HourlyForecast";
-import DailyForecast from "./dailyForecast/DailyForecast";
+import CurrentWeather from "./components/currentWeather/CurrentWeather";
+import HourlyForecast from "./components/hourlyForecast/HourlyForecast";
+import DailyForecast from "./components/dailyForecast/DailyForecast";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const [town, setTown] = useState("");
   const [currentWeather, setCurrentWeather] = useState(null);
   const [hourlyForecast, setHourlyForecast] = useState([]);
   const [dailyForecast, setDailyForecast] = useState([]);
   const [selectedDay, setSelectedDay] = useState(null);
-  const [town, setTown] = useState("");
   const [loadingLocation, setLoadingLocation] = useState(false);
 
   useEffect(() => {
@@ -112,9 +112,11 @@ function App() {
     }
   }, [loadingLocation]);
 
+  const partOfDay = hourlyForecast[0]?.sys?.pod;
+
   return (
     <ErrorBoundary>
-      <div className="app">
+      <div className={`app ${partOfDay === "n" ? "appNight" : "appDay"}`}>
         {isLoading ? (
           <Loading />
         ) : (
@@ -122,7 +124,9 @@ function App() {
             <img className="logo" src="icons/logo.svg" alt="logo"></img>
             <Search town={town} setTown={setTown} handleSearch={handleSearch} />
             <Geolocation onWeatherData={handleLocationWeather} />
-            <HourlyForecast hourlyForecast={hourlyForecast} />
+            {hourlyForecast.length > 0 && (
+              <HourlyForecast hourlyForecast={hourlyForecast} />
+            )}
             <CurrentWeather currentWeather={currentWeather} />
             <DailyForecast
               dailyForecast={dailyForecast}

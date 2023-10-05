@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { WEATHER_KEY, WEATHER_URL } from "./services/api";
 
 const Geolocation = ({ onWeatherData }) => {
   const [loading, setLoading] = useState(false);
@@ -7,22 +8,20 @@ const Geolocation = ({ onWeatherData }) => {
   const fetchWeatherByLocation = async () => {
     setLoading(true);
 
-    const key = "59265a5cb4f663b8cf3898b2c0a2c2df";
-
     if (navigator.geolocation) {
       try {
-        const permission = await navigator.permissions.query({
-          name: "geolocation",
-        });
+        const userPermission = window.confirm(
+          "This app would like to use your location. Allow access?"
+        );
 
-        if (permission.state === "granted") {
+        if (userPermission) {
           navigator.geolocation.getCurrentPosition(
             async (position) => {
               if (position && position.coords) {
                 const { longitude, latitude } = position.coords;
 
-                const currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${key}`;
-                const hourlyForecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=${key}`;
+                const currentWeatherUrl = `${WEATHER_URL}/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${WEATHER_KEY}`;
+                const hourlyForecastUrl = `${WEATHER_URL}/forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=${WEATHER_KEY}`;
 
                 const currentWeatherResponse = await axios.get(
                   currentWeatherUrl
@@ -41,10 +40,13 @@ const Geolocation = ({ onWeatherData }) => {
             },
             (error) => {
               console.error("Geolocation error:", error);
+              alert(
+                "Please allow location access in your browser settings and try again."
+              );
             }
           );
         } else {
-          console.error("Geolocation permission denied.");
+          console.error("Geolocation permission denied by user.");
         }
       } catch (error) {
         console.error("Error fetching weather data:", error);
@@ -66,7 +68,7 @@ const Geolocation = ({ onWeatherData }) => {
         disabled={loading}
         alt="geo_icon"
         data-toggle="tooltip"
-        title="Location"
+        title="Click to get weather by location"
       ></img>
     </div>
   );
