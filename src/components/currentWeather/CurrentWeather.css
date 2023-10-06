@@ -18,7 +18,7 @@
 @media screen and (max-width: 786px) {
   .container {
     position: relative;
-    margin: 3.5vh auto 0;
+    margin: 3.5vh auto;
   }
 }
 
