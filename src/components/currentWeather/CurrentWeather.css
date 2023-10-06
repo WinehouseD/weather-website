@@ -1,6 +1,25 @@
 .container {
-  margin: 40vh 0 0 13vh;
+  margin: 40vh 0 0 14vh;
   position: fixed;
+}
+
+@media screen and (max-width: 1224px) {
+  .container {
+    margin: 50vh 0 0 5vh;
+  }
+}
+
+@media screen and (max-width: 967px) {
+  .container {
+    margin: 35vh 0 0 3vh;
+  }
+}
+
+@media screen and (max-width: 786px) {
+  .container {
+    position: relative;
+    margin: 3.5vh auto 0;
+  }
 }
 
 .city p {
@@ -8,6 +27,18 @@
   font-size: 3rem;
   padding-left: 1.9rem;
   font-weight: 900;
+}
+
+@media screen and (max-width: 1224px) {
+  .city p {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 967px) {
+  .city p {
+    font-size: 1.5rem;
+  }
 }
 
 .temp h1 {
@@ -18,16 +49,51 @@
   flex-direction: row;
 }
 
+@media screen and (max-width: 1224px) {
+  .temp h1 {
+    font-size: 5rem;
+  }
+}
+@media screen and (max-width: 967px) {
+  .temp h1 {
+    font-size: 4rem;
+  }
+}
+
 .temp h1 p {
   text-align: left;
   font-size: 2.2rem;
   padding: 1.25rem 0 0 0.3rem;
 }
 
+@media screen and (max-width: 1224px) {
+  .temp h1 p {
+    font-size: 1.5rem;
+    padding-top: 1rem;
+  }
+}
+@media screen and (max-width: 967px) {
+  .temp h1 p {
+    font-size: 1.1rem;
+    padding-top: 0.7rem;
+  }
+}
+
 .desc p {
   font-size: 2rem;
   text-align: left;
   padding-left: 1.9rem;
+}
+
+@media screen and (max-width: 1224px) {
+  .desc p {
+    font-size: 1.5rem;
+  }
+}
+@media screen and (max-width: 967px) {
+  .desc p {
+    font-size: 1.2rem;
+  }
 }
 
 .weather_icon {
@@ -37,6 +103,21 @@
   transition: transform 0.1s;
 }
 
+@media screen and (max-width: 1224px) {
+  .weather_icon {
+    height: 4rem;
+    width: 4rem;
+    padding-top: 0.3rem;
+  }
+}
+
+@media screen and (max-width: 967px) {
+  .weather_icon {
+    height: 3rem;
+    width: 3rem;
+  }
+}
+
 .additional-info {
   margin: 0 10vh 0 3vh;
   display: flex;
@@ -44,11 +125,42 @@
   padding-top: 3px;
 }
 
+@media screen and (max-width: 786px) {
+  .additional-info {
+    margin: 0 0 0 3.5vh;
+  }
+}
+
 .sunrise p,
 .sunset p,
 .time p {
   font-size: 1.3rem;
   padding: 0 0 0 0.7rem;
+}
+
+@media screen and (max-width: 1224px) {
+  .sunrise p,
+  .sunset p,
+  .time p {
+    padding: 0 0 0 0.3rem;
+  }
+}
+@media screen and (max-width: 967px) {
+  .sunrise p,
+  .sunset p,
+  .time p {
+    font-size: 1.1rem;
+    padding: 0 0 0 0.2rem;
+  }
+}
+
+@media screen and (max-width: 786px) {
+  .sunrise p,
+  .sunset p,
+  .time p {
+    font-size: 1rem;
+    padding: 0 0 0 0.2rem;
+  }
 }
 
 .sunrise,
@@ -61,6 +173,12 @@
   width: 42px;
   bottom: 8px;
   margin-left: 8px;
+}
+
+@media screen and (max-width: 786px) {
+  .sunIcon {
+    width: 37px;
+  }
 }
 
 .weather_icon:hover,

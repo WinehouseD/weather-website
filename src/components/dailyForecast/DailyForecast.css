@@ -11,6 +11,28 @@
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
 }
 
+@media screen and (max-width: 1224px) {
+  .daily-forecast {
+    width: 24rem;
+    margin: 0 6vh 7vh 0;
+  }
+}
+
+@media screen and (max-width: 967px) {
+  .daily-forecast {
+    width: 18rem;
+    margin: 0 3vh 5vh 0;
+  }
+}
+
+@media screen and (max-width: 786px) {
+  .daily-forecast {
+    margin: 1vh auto 0;
+    padding-bottom: 1rem;
+    position: relative;
+  }
+}
+
 .titleDaily {
   text-align: left;
   letter-spacing: 1px;
@@ -24,6 +46,13 @@
   align-items: center;
   padding: 1.2vh 0.3rem 0;
   font-size: 1.2rem;
+}
+
+@media screen and (max-width: 786px) {
+  .forecastDaily {
+    font-size: 1rem;
+    padding-top: 0.8vh;
+  }
 }
 
 .forecastDaily:hover {
@@ -59,7 +88,7 @@
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 22rem;
+  width: 24.5rem;
   background: rgba(0, 0, 0, 0.8);
   transform: translate(-50%, -50%);
   padding: 3rem;
@@ -67,6 +96,12 @@
   z-index: 1000;
   text-align: center;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+@media screen and (max-width: 786px) {
+  .popup {
+    width: 16rem;
+  }
 }
 
 .main-title {

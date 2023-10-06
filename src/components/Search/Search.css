@@ -3,6 +3,12 @@
   padding: 1rem;
 }
 
+@media screen and (max-width: 786px) {
+  .inp-field {
+    padding: 0.5rem;
+  }
+}
+
 .inp-field input {
   padding: 0.7rem 1.5rem;
   font-size: 1.2rem;
@@ -15,12 +21,24 @@
   text-transform: capitalize;
 }
 
+@media screen and (max-width: 786px) {
+  .inp-field input {
+    font-size: 0.9rem;
+  }
+}
+
 .searchBtn {
   width: 25px;
   cursor: pointer;
   padding: 0.8rem 0 0 0.19rem;
   transition: transform 0.1s;
-  position: fixed;
+  position: relative;
+}
+
+@media screen and (max-width: 786px) {
+  .searchBtn {
+    width: 19px;
+  }
 }
 
 .searchBtn:hover {

@@ -11,6 +11,28 @@
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
 }
 
+@media screen and (max-width: 1224px) {
+  .hourly-forecast {
+    width: 24rem;
+    margin: 7vh 6vh 0 0;
+  }
+}
+
+@media screen and (max-width: 967px) {
+  .hourly-forecast {
+    width: 18rem;
+    margin: 5vh 3.5vh 0 0;
+  }
+}
+
+@media screen and (max-width: 786px) {
+  .hourly-forecast {
+    margin: 2vh auto 0;
+    padding-bottom: 2.5rem;
+    position: relative;
+  }
+}
+
 .titleHour {
   text-align: left;
   padding: 1.2vh 0;
@@ -27,6 +49,17 @@
   font-size: 1.2rem;
 }
 
+@media screen and (max-width: 1224px) {
+  .info {
+    font-size: 1rem;
+  }
+}
+@media screen and (max-width: 967px) {
+  .info {
+    font-size: 0.8rem;
+  }
+}
+
 .temperature {
   padding-right: 0.6rem;
 }
@@ -35,6 +68,17 @@
   position: absolute;
   font-size: 0.7rem;
   padding-top: 3px;
+}
+@media screen and (max-width: 1224px) {
+  .temperature span {
+    padding-top: 1.3px;
+  }
+}
+
+@media screen and (max-width: 967px) {
+  .temperature span {
+    padding-top: 0.8px;
+  }
 }
 
 .iconHourly {
@@ -54,8 +98,21 @@
   padding-top: 0.16rem;
 }
 
+@media screen and (max-width: 967px) {
+  .precipitation {
+    font-size: 0.8rem;
+  }
+}
+
 .waterDrop {
   height: 0.9rem;
   width: 0.9rem;
   padding-top: 0.12rem;
+}
+
+@media screen and (max-width: 967px) {
+  .waterDrop {
+    height: 0.8rem;
+    width: 0.8rem;
+  }
 }

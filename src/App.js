@@ -24,6 +24,24 @@ function App() {
     }, 2000);
   }, []);
 
+  useEffect(() => {
+    function refreshPage() {
+      localStorage.setItem("pageRefreshed", "true");
+      window.location.reload();
+    }
+
+    const pageRefreshed = localStorage.getItem("pageRefreshed");
+
+    if (
+      !pageRefreshed &&
+      hourlyForecast[0]?.sys?.pod &&
+      (hourlyForecast[0]?.sys?.pod === "n" ||
+        hourlyForecast[0]?.sys?.pod === "d")
+    ) {
+      refreshPage();
+    }
+  }, [hourlyForecast]);
+
   const fetchCurrentWeather = () => {
     const url = `${WEATHER_URL}/weather?q=${town}&units=metric&appid=${WEATHER_KEY}`;
 

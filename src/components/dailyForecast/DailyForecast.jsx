@@ -82,6 +82,7 @@ const DailyForecast = ({ dailyForecast, selectedDay, setSelectedDay }) => {
                   src="icons/thermometer.svg"
                   alt="thermometer"
                 />
+                <h5>Feels like</h5>
                 <p>
                   {selectedDay.main.feels_like.toFixed()}
                   <span>°C</span>
@@ -93,10 +94,12 @@ const DailyForecast = ({ dailyForecast, selectedDay, setSelectedDay }) => {
                   src="icons/humidity.svg"
                   alt="humidity"
                 />
+                <h5>Humidity</h5>
                 <p>{selectedDay.main.humidity}%</p>
               </div>
               <div className="ws" data-toggle="tooltip" title="Wind speed">
                 <img className="details-icon" src="icons/wind.svg" alt="wind" />
+                <h5>Wind speed</h5>
                 <p>{selectedDay.wind.speed.toFixed()} m/s</p>
               </div>
               <div className="pres" data-toggle="tooltip" title="Pressure">
@@ -105,6 +108,7 @@ const DailyForecast = ({ dailyForecast, selectedDay, setSelectedDay }) => {
                   src="icons/meter.svg"
                   alt="meter"
                 />
+                <h5>Pressure</h5>
                 <p>{selectedDay.main.pressure.toFixed()} mb</p>
               </div>
               <div className="prec" data-toggle="tooltip" title="Precipitation">
@@ -113,6 +117,7 @@ const DailyForecast = ({ dailyForecast, selectedDay, setSelectedDay }) => {
                   src="icons/water-drop.svg"
                   alt="water-drop"
                 />
+                <h5>Precipitation</h5>
                 <p> {selectedDay.rain ? selectedDay.rain["3h"] : 0} mm</p>
               </div>
             </div>
