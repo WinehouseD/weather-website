@@ -1,6 +1,6 @@
 import React from "react";
 import moment from "moment";
-import "./HourlyForecast.css";
+import "./HourlyForecast.scss";
 
 const HourlyForecast = ({ hourlyForecast }) => {
   if (!hourlyForecast) {

@@ -1,0 +1,12 @@
+.title {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: fixed;
+  width: 40rem;
+
+  @media screen and (max-width: 786px) {
+    width: 20rem;
+    top: 45%;
+  }
+}

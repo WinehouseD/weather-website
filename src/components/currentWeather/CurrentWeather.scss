@@ -1,0 +1,190 @@
+// Define variables
+$primary-color: #3498db;
+$font-size: 16px;
+
+// Container styles
+.container {
+  margin: 40vh 0 0 14vh;
+  position: fixed;
+
+  @media screen and (max-width: 1224px) {
+    margin: 50vh 0 0 5vh;
+  }
+
+  @media screen and (max-width: 967px) {
+    margin: 35vh 0 0 3vh;
+  }
+
+  @media screen and (max-width: 786px) {
+    position: relative;
+    margin: 3.5vh auto;
+  }
+}
+
+// City styles
+.city {
+  p {
+    text-align: left;
+    font-size: 3.1rem;
+    padding-left: 1.9rem;
+    font-weight: 900;
+
+    @media screen and (max-width: 1224px) {
+      font-size: 2rem;
+    }
+
+    @media screen and (max-width: 967px) {
+      font-size: 1.5rem;
+    }
+
+    @media screen and (max-width: 786px) {
+      display: flex;
+      justify-content: center;
+      padding: 0;
+    }
+  }
+}
+
+// Temp styles
+.temp {
+  h1 {
+    display: flex;
+    text-align: left;
+    font-size: 6.7rem;
+    padding-left: 1.9rem;
+    flex-direction: row;
+
+    @media screen and (max-width: 1224px) {
+      font-size: 5rem;
+    }
+
+    @media screen and (max-width: 967px) {
+      font-size: 4rem;
+    }
+
+    @media screen and (max-width: 786px) {
+      display: flex;
+      justify-content: center;
+      padding: 0;
+    }
+
+    p {
+      text-align: left;
+      font-size: 2.3rem;
+      padding: 1.25rem 0 0 0.3rem;
+
+      @media screen and (max-width: 1224px) {
+        font-size: 1.5rem;
+        padding-top: 1rem;
+      }
+
+      @media screen and (max-width: 967px) {
+        font-size: 1.1rem;
+        padding-top: 0.7rem;
+      }
+    }
+  }
+}
+
+// Desc styles
+.desc {
+  p {
+    font-size: 2.1rem;
+    text-align: left;
+    padding-left: 1.9rem;
+
+    @media screen and (max-width: 1224px) {
+      font-size: 1.5rem;
+    }
+
+    @media screen and (max-width: 967px) {
+      font-size: 1.2rem;
+    }
+
+    @media screen and (max-width: 786px) {
+      display: flex;
+      justify-content: center;
+      padding: 0;
+    }
+  }
+}
+
+// Weather Icon styles
+.weather_icon {
+  height: 4.6rem;
+  width: 4.6rem;
+  padding-top: 0.8rem;
+  transition: transform 0.1s;
+
+  @media screen and (max-width: 1224px) {
+    height: 4rem;
+    width: 4rem;
+    padding-top: 0.3rem;
+  }
+
+  @media screen and (max-width: 967px) {
+    height: 3rem;
+    width: 3rem;
+  }
+}
+
+// Additional Info styles
+.additional-info {
+  margin: 0 10vh 0 3vh;
+  display: flex;
+  flex-direction: row;
+  padding-top: 4.5px;
+
+  @media screen and (max-width: 786px) {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+// Sunrise, Sunset, and Time styles
+.sunrise,
+.sunset,
+.time {
+  p {
+    font-size: 1.4rem;
+    padding: 0 0 0 0.7rem;
+
+    @media screen and (max-width: 1224px) {
+      padding: 0 0 0 0.3rem;
+    }
+
+    @media screen and (max-width: 967px) {
+      font-size: 1.1rem;
+      padding: 0 0 0 0.2rem;
+    }
+
+    @media screen and (max-width: 786px) {
+      font-size: 1rem;
+      padding: 0 0 0 0.2rem;
+    }
+  }
+}
+
+// Sunrise and Sunset styles
+.sunrise,
+.sunset {
+  display: flex;
+
+  .sunIcon {
+    position: relative;
+    width: 42px;
+    bottom: 8px;
+    margin-left: 8px;
+
+    @media screen and (max-width: 786px) {
+      width: 37px;
+    }
+  }
+}
+
+// Hover styles
+.weather_icon:hover,
+.sunIcon:hover {
+  transform: scale(1.1);
+}

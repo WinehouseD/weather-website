@@ -6,27 +6,21 @@
   width: 28.1rem;
   height: 9.4rem;
   border-radius: 25px;
-  margin: 4vh 13vh 0 0;
+  margin: 4vh 13vh 3vh 0;
   background: rgba(0, 0, 0, 0.2);
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
-}
 
-@media screen and (max-width: 1224px) {
-  .hourly-forecast {
+  @media screen and (max-width: 1224px) {
     width: 24rem;
-    margin: 7vh 6vh 0 0;
+    margin: 6vh 6vh 3vh 0;
   }
-}
 
-@media screen and (max-width: 967px) {
-  .hourly-forecast {
+  @media screen and (max-width: 967px) {
     width: 18rem;
     margin: 5vh 3.5vh 0 0;
   }
-}
 
-@media screen and (max-width: 786px) {
-  .hourly-forecast {
+  @media screen and (max-width: 786px) {
     margin: 2vh auto 0;
     padding-bottom: 2.5rem;
     position: relative;
@@ -47,37 +41,31 @@
   text-align: center;
   padding: 1.2vh 0.6rem 1.2rem 0;
   font-size: 1.2rem;
-}
 
-@media screen and (max-width: 1224px) {
-  .info {
+  @media screen and (max-width: 1224px) {
     font-size: 1rem;
   }
-}
-@media screen and (max-width: 967px) {
-  .info {
+
+  @media screen and (max-width: 967px) {
     font-size: 0.8rem;
   }
 }
 
 .temperature {
   padding-right: 0.6rem;
-}
 
-.temperature span {
-  position: absolute;
-  font-size: 0.7rem;
-  padding-top: 3px;
-}
-@media screen and (max-width: 1224px) {
-  .temperature span {
-    padding-top: 1.3px;
-  }
-}
+  span {
+    position: absolute;
+    font-size: 0.7rem;
+    padding-top: 3px;
 
-@media screen and (max-width: 967px) {
-  .temperature span {
-    padding-top: 0.8px;
+    @media screen and (max-width: 1224px) {
+      padding-top: 1.3px;
+    }
+
+    @media screen and (max-width: 967px) {
+      padding-top: 0.8px;
+    }
   }
 }
 
@@ -85,10 +73,10 @@
   padding: 0.7vh 0 0.7vh 0;
   transition: transform 0.1s;
   width: 2.5rem;
-}
 
-.iconHourly:hover {
-  transform: scale(1.1);
+  &:hover {
+    transform: scale(1.1);
+  }
 }
 
 .precipitation {
@@ -96,10 +84,8 @@
   display: flex;
   justify-content: center;
   padding-top: 0.16rem;
-}
 
-@media screen and (max-width: 967px) {
-  .precipitation {
+  @media screen and (max-width: 967px) {
     font-size: 0.8rem;
   }
 }
@@ -108,10 +94,8 @@
   height: 0.9rem;
   width: 0.9rem;
   padding-top: 0.12rem;
-}
 
-@media screen and (max-width: 967px) {
-  .waterDrop {
+  @media screen and (max-width: 967px) {
     height: 0.8rem;
     width: 0.8rem;
   }

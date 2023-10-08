@@ -1,5 +1,5 @@
 import React from "react";
-import "./DailyForecast.css";
+import "./DailyForecast.scss";
 
 const WEEK_DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 

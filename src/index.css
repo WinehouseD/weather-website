@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
 
 ::-webkit-scrollbar {
-  width: 7px;
+  width: 3px;
 }
 
 ::-webkit-scrollbar-track {
@@ -58,6 +58,13 @@
     min-height: 111vh;
   }
 }
+@media screen and (max-height: 670px) {
+  .appDay,
+  .appNight {
+    min-height: 130vh;
+    min-width: fit-content;
+  }
+}
 
 .logo {
   position: fixed;
@@ -100,83 +107,4 @@
 .logo:hover,
 .geo_icon:hover {
   transform: scale(1.1);
-}
-
-.loader {
-  font-size: 25px;
-  position: relative;
-  width: 4em;
-  height: 1em;
-  margin: 40% auto;
-}
-
-.title {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  position: fixed;
-  width: 40rem;
-}
-
-@media screen and (max-width: 786px) {
-  .loader {
-    margin: 95% auto;
-  }
-}
-
-@media screen and (max-width: 786px) {
-  .title {
-    width: 20rem;
-    top: 45%;
-  }
-}
-
-.dot {
-  width: 1em;
-  height: 1em;
-  border-radius: 0.5em;
-  background: #ffffff;
-  position: absolute;
-  animation: 0.5s ease infinite;
-}
-
-.dot1,
-.dot2 {
-  left: 0;
-}
-
-.dot3 {
-  left: 1.5em;
-}
-
-.dot4 {
-  left: 3em;
-}
-
-@keyframes reveal {
-  from {
-    transform: scale(0.001);
-  }
-  to {
-    transform: scale(1);
-  }
-}
-
-@keyframes slide {
-  to {
-    transform: translateX(1.5em);
-  }
-}
-
-.dot1 {
-  animation-name: reveal;
-}
-
-.dot2,
-.dot3 {
-  animation-name: slide;
-}
-
-.dot4 {
-  animation: reveal reverse;
 }

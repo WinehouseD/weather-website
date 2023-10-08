@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { WEATHER_KEY, WEATHER_URL } from "./services/api";
 import axios from "axios";
 import ErrorBoundary from "./ErrorBoundary ";
-import Loading from "./Loading";
+import Loading from "./components/loader/Loading";
 import Search from "./components/Search/Search";
 import Geolocation from "./Geolocation";
 import CurrentWeather from "./components/currentWeather/CurrentWeather";
@@ -21,26 +21,8 @@ function App() {
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
-    }, 2000);
+    }, 1500);
   }, []);
-
-  useEffect(() => {
-    function refreshPage() {
-      localStorage.setItem("pageRefreshed", "true");
-      window.location.reload();
-    }
-
-    const pageRefreshed = localStorage.getItem("pageRefreshed");
-
-    if (
-      !pageRefreshed &&
-      hourlyForecast[0]?.sys?.pod &&
-      (hourlyForecast[0]?.sys?.pod === "n" ||
-        hourlyForecast[0]?.sys?.pod === "d")
-    ) {
-      refreshPage();
-    }
-  }, [hourlyForecast]);
 
   const fetchCurrentWeather = () => {
     const url = `${WEATHER_URL}/weather?q=${town}&units=metric&appid=${WEATHER_KEY}`;
@@ -51,14 +33,16 @@ function App() {
         setCurrentWeather(response.data);
         localStorage.setItem("currentWeather", JSON.stringify(response.data));
       })
-      .catch((error) => console.log("Error:", error));
+      .catch((error) => {
+        console.log("Error:", error);
+        alert("The entered city does not exist.");
+      });
   };
 
   const fetchHourlyForecast = () => {
-    const url2 = `${WEATHER_URL}/forecast?q=${town}&appid=${WEATHER_KEY}&units=metric`;
-
+    const url3 = `${WEATHER_URL}/forecast?q=${town}&appid=${WEATHER_KEY}&units=metric&lang=en`;
     axios
-      .get(url2)
+      .get(url3)
       .then((response) => {
         setHourlyForecast(response.data.list);
         localStorage.setItem(
@@ -70,10 +54,9 @@ function App() {
   };
 
   const fetchDailyForecast = (town) => {
-    const url3 = `${WEATHER_URL}/forecast?q=${town}&appid=${WEATHER_KEY}&units=metric`;
-
+    const url2 = `${WEATHER_URL}/forecast?q=${town}&appid=${WEATHER_KEY}&units=metric`;
     axios
-      .get(url3)
+      .get(url2)
       .then((response) => {
         const dailyData = response.data.list.filter(
           (item, index) => index % 8 === 0

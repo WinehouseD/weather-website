@@ -1,6 +1,6 @@
 import React from "react";
 import moment from "moment";
-import "./CurrentWeather.css";
+import "./CurrentWeather.scss";
 
 const CurrentWeather = ({ currentWeather }) => {
   if (!currentWeather) {
@@ -22,7 +22,7 @@ const CurrentWeather = ({ currentWeather }) => {
       <div className="header">
         <div className="city" data-toggle="tooltip" title={`City, Country`}>
           <p>
-            {cityName}. {countryName}
+            {cityName}, {countryName}
           </p>
         </div>
       </div>

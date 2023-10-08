@@ -1,5 +1,5 @@
 import React from "react";
-import "./Search.css";
+import "./Search.scss";
 
 function Search({ town, setTown, handleSearch }) {
   const handleKeyDown = (event) => {
