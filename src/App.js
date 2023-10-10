@@ -8,6 +8,7 @@ import Geolocation from "./Geolocation";
 import CurrentWeather from "./components/currentWeather/CurrentWeather";
 import HourlyForecast from "./components/hourlyForecast/HourlyForecast";
 import DailyForecast from "./components/dailyForecast/DailyForecast";
+import { clear } from "@testing-library/user-event/dist/clear";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -97,6 +98,25 @@ function App() {
     setTown("");
     setLoadingLocation(false);
   };
+
+  useEffect(() => {
+    if (town === "") {
+      const townName = JSON.parse(localStorage.getItem("currentWeather"))?.name;
+      if (townName !== null && townName !== "" && townName !== undefined) {
+        setTown(townName);
+        setIsLoading(true);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (town !== "" && isLoading) {
+      setIsLoading(false);
+      localStorage.clear();
+      handleSearch();
+      setTown("");
+    }
+  }, [town]);
 
   const handleLocationWeather = (currentData, hourlyData) => {
     setCurrentWeather(currentData);
