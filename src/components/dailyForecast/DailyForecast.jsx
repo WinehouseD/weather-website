@@ -49,6 +49,7 @@ const DailyForecast = ({ dailyForecast, selectedDay, setSelectedDay }) => {
               alt="weather"
               data-toggle="tooltip"
               title={item.weather[0].description}
+              loading="lazy"
             />
             <div className="temps" data-toggle="tooltip" title="Temperature">
               {Math.round(item.main.temp)}
@@ -58,6 +59,7 @@ const DailyForecast = ({ dailyForecast, selectedDay, setSelectedDay }) => {
               className="detailsIcon"
               src="icons/details.svg"
               alt="details"
+              loading="lazy"
             />
           </div>
         );
@@ -72,6 +74,7 @@ const DailyForecast = ({ dailyForecast, selectedDay, setSelectedDay }) => {
               src="icons/close-button.svg"
               alt="close"
               onClick={closePopup}
+              loading="lazy"
             />
             <div className="main-title">Day Details</div>
             <hr />
@@ -81,6 +84,7 @@ const DailyForecast = ({ dailyForecast, selectedDay, setSelectedDay }) => {
                   className="details-icon"
                   src="icons/thermometer.svg"
                   alt="thermometer"
+                  loading="lazy"
                 />
                 <h5>Feels like</h5>
                 <p>
@@ -93,12 +97,18 @@ const DailyForecast = ({ dailyForecast, selectedDay, setSelectedDay }) => {
                   className="details-icon"
                   src="icons/humidity.svg"
                   alt="humidity"
+                  loading="lazy"
                 />
                 <h5>Humidity</h5>
                 <p>{selectedDay.main.humidity}%</p>
               </div>
               <div className="ws" data-toggle="tooltip" title="Wind speed">
-                <img className="details-icon" src="icons/wind.svg" alt="wind" />
+                <img
+                  className="details-icon"
+                  src="icons/wind.svg"
+                  alt="wind"
+                  loading="lazy"
+                />
                 <h5>Wind speed</h5>
                 <p>{selectedDay.wind.speed.toFixed()} m/s</p>
               </div>
@@ -107,6 +117,7 @@ const DailyForecast = ({ dailyForecast, selectedDay, setSelectedDay }) => {
                   className="details-icon"
                   src="icons/meter.svg"
                   alt="meter"
+                  loading="lazy"
                 />
                 <h5>Pressure</h5>
                 <p>{selectedDay.main.pressure.toFixed()} mb</p>
@@ -116,6 +127,7 @@ const DailyForecast = ({ dailyForecast, selectedDay, setSelectedDay }) => {
                   className="details-icon"
                   src="icons/water-drop.svg"
                   alt="water-drop"
+                  loading="lazy"
                 />
                 <h5>Precipitation</h5>
                 <p> {selectedDay.rain ? selectedDay.rain["3h"] : 0} mm</p>

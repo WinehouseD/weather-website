@@ -1,14 +1,16 @@
 import { useState, useEffect } from "react";
-import { WEATHER_KEY, WEATHER_URL } from "./services/api";
-import axios from "axios";
 import ErrorBoundary from "./ErrorBoundary ";
 import Loading from "./components/loader/Loading";
-import Search from "./components/Search/Search";
+import Search from "./components/search/Search";
 import Geolocation from "./Geolocation";
 import CurrentWeather from "./components/currentWeather/CurrentWeather";
 import HourlyForecast from "./components/hourlyForecast/HourlyForecast";
 import DailyForecast from "./components/dailyForecast/DailyForecast";
-import { clear } from "@testing-library/user-event/dist/clear";
+import {
+  fetchCurrentWeather,
+  fetchHourlyForecast,
+  fetchDailyForecast,
+} from "./api/services";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -24,49 +26,6 @@ function App() {
       setIsLoading(false);
     }, 1500);
   }, []);
-
-  const fetchCurrentWeather = () => {
-    const url = `${WEATHER_URL}/weather?q=${town}&units=metric&appid=${WEATHER_KEY}`;
-
-    axios
-      .get(url)
-      .then((response) => {
-        setCurrentWeather(response.data);
-        localStorage.setItem("currentWeather", JSON.stringify(response.data));
-      })
-      .catch((error) => {
-        console.log("Error:", error);
-        alert("The entered city does not exist.");
-      });
-  };
-
-  const fetchHourlyForecast = () => {
-    const url3 = `${WEATHER_URL}/forecast?q=${town}&appid=${WEATHER_KEY}&units=metric&lang=en`;
-    axios
-      .get(url3)
-      .then((response) => {
-        setHourlyForecast(response.data.list);
-        localStorage.setItem(
-          "hourlyForecast",
-          JSON.stringify(response.data.list)
-        );
-      })
-      .catch((error) => console.error("Error:", error));
-  };
-
-  const fetchDailyForecast = (town) => {
-    const url2 = `${WEATHER_URL}/forecast?q=${town}&appid=${WEATHER_KEY}&units=metric`;
-    axios
-      .get(url2)
-      .then((response) => {
-        const dailyData = response.data.list.filter(
-          (item, index) => index % 8 === 0
-        );
-        setDailyForecast(dailyData);
-        localStorage.setItem("dailyForecast", JSON.stringify(dailyData));
-      })
-      .catch((error) => console.error("Error:", error));
-  };
 
   useEffect(() => {
     const storedCurrentWeather = JSON.parse(
@@ -92,9 +51,9 @@ function App() {
   }, []);
 
   const handleSearch = () => {
-    fetchCurrentWeather();
-    fetchHourlyForecast();
-    fetchDailyForecast(town);
+    fetchCurrentWeather(town, setCurrentWeather);
+    fetchHourlyForecast(town, setHourlyForecast);
+    fetchDailyForecast(town, setDailyForecast);
     setTown("");
     setLoadingLocation(false);
   };
@@ -142,7 +101,12 @@ function App() {
           <Loading />
         ) : (
           <>
-            <img className="logo" src="icons/logo.svg" alt="logo"></img>
+            <img
+              className="logo"
+              src="icons/logo.svg"
+              alt="logo"
+              loading="lazy"
+            ></img>
             <Search town={town} setTown={setTown} handleSearch={handleSearch} />
             <Geolocation onWeatherData={handleLocationWeather} />
             {hourlyForecast.length > 0 && (

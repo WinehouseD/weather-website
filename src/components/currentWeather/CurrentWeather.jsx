@@ -37,6 +37,7 @@ const CurrentWeather = ({ currentWeather }) => {
               src={`icons/${weather[0].icon}.svg`}
               data-toggle="tooltip"
               title="Description"
+              loading="lazy"
             />
           </p>
         </h1>
@@ -49,11 +50,21 @@ const CurrentWeather = ({ currentWeather }) => {
           <p>{date}</p>
         </div>
         <div className="sunrise" data-toggle="tooltip" title="Sunrise">
-          <img className="sunIcon" src="icons/sunrise.svg" alt="sunrise" />
+          <img
+            className="sunIcon"
+            src="icons/sunrise.svg"
+            alt="sunrise"
+            loading="lazy"
+          />
           <p>{sunriseTime}</p>
         </div>
         <div className="sunset" data-toggle="tooltip" title="Sunset">
-          <img className="sunIcon" src="icons/sunset.svg" alt="sunset" />
+          <img
+            className="sunIcon"
+            src="icons/sunset.svg"
+            alt="sunset"
+            loading="lazy"
+          />
           <p>{sunsetTime}</p>
         </div>
       </div>

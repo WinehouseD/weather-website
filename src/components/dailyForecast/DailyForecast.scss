@@ -88,6 +88,7 @@
 
 .detailsIcon {
   width: 2rem;
+  height: 2rem;
   transition: transform 0.1s;
 }
 
@@ -145,6 +146,7 @@
   .details-icon {
     transition: transform 0.1s;
     width: 2.3rem;
+    height: 2.3rem;
   }
 }
 
@@ -155,6 +157,7 @@
   margin: 1.3rem 1.3rem 0 0;
   cursor: pointer;
   width: 1.8rem;
+  height: 1.8rem;
   transition: transform 0.1s;
 
   &:hover,

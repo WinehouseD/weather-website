@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { WEATHER_KEY, WEATHER_URL } from "./services/api";
 
 const Geolocation = ({ onWeatherData }) => {
   const [loading, setLoading] = useState(false);
@@ -20,8 +19,8 @@ const Geolocation = ({ onWeatherData }) => {
               if (position && position.coords) {
                 const { longitude, latitude } = position.coords;
 
-                const currentWeatherUrl = `${WEATHER_URL}/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${WEATHER_KEY}`;
-                const hourlyForecastUrl = `${WEATHER_URL}/forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=${WEATHER_KEY}`;
+                const currentWeatherUrl = `${process.env.REACT_APP_WEATHER_URL}/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${process.env.REACT_APP_WEATHER_KEY}`;
+                const hourlyForecastUrl = `${process.env.REACT_APP_WEATHER_URL}/forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=${process.env.REACT_APP_WEATHER_KEY}`;
 
                 const currentWeatherResponse = await axios.get(
                   currentWeatherUrl
@@ -35,7 +34,7 @@ const Geolocation = ({ onWeatherData }) => {
 
                 onWeatherData(currentWeatherData, hourlyForecastData);
               } else {
-                console.error("Geolocation data is missing.");
+                alert("Geolocation data is missing.");
               }
             },
             (error) => {
@@ -46,7 +45,7 @@ const Geolocation = ({ onWeatherData }) => {
             }
           );
         } else {
-          console.error("Geolocation permission denied by user.");
+          alert("Geolocation permission denied.");
         }
       } catch (error) {
         console.error("Error fetching weather data:", error);
@@ -54,7 +53,7 @@ const Geolocation = ({ onWeatherData }) => {
         setLoading(false);
       }
     } else {
-      console.error("Geolocation is not supported by your browser");
+      alert("Geolocation is not supported by your browser");
       setLoading(false);
     }
   };
@@ -69,6 +68,7 @@ const Geolocation = ({ onWeatherData }) => {
         alt="geo_icon"
         data-toggle="tooltip"
         title="Click to get weather by location"
+        lazy="loading"
       ></img>
     </div>
   );

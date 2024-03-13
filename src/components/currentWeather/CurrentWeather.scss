@@ -1,8 +1,6 @@
-// Define variables
 $primary-color: #3498db;
 $font-size: 16px;
 
-// Container styles
 .container {
   margin: 40vh 0 0 14vh;
   position: fixed;
@@ -21,11 +19,10 @@ $font-size: 16px;
   }
 }
 
-// City styles
 .city {
   p {
     text-align: left;
-    font-size: 3.1rem;
+    font-size: 2.5rem;
     padding-left: 1.9rem;
     font-weight: 900;
 
@@ -45,12 +42,11 @@ $font-size: 16px;
   }
 }
 
-// Temp styles
 .temp {
   h1 {
     display: flex;
     text-align: left;
-    font-size: 6.7rem;
+    font-size: 6rem;
     padding-left: 1.9rem;
     flex-direction: row;
 
@@ -86,7 +82,6 @@ $font-size: 16px;
   }
 }
 
-// Desc styles
 .desc {
   p {
     font-size: 2.1rem;
@@ -109,7 +104,6 @@ $font-size: 16px;
   }
 }
 
-// Weather Icon styles
 .weather_icon {
   height: 4.6rem;
   width: 4.6rem;
@@ -128,7 +122,6 @@ $font-size: 16px;
   }
 }
 
-// Additional Info styles
 .additional-info {
   margin: 0 10vh 0 3vh;
   display: flex;
@@ -142,7 +135,6 @@ $font-size: 16px;
   }
 }
 
-// Sunrise, Sunset, and Time styles
 .sunrise,
 .sunset,
 .time {
@@ -166,7 +158,6 @@ $font-size: 16px;
   }
 }
 
-// Sunrise and Sunset styles
 .sunrise,
 .sunset {
   display: flex;
@@ -174,16 +165,17 @@ $font-size: 16px;
   .sunIcon {
     position: relative;
     width: 42px;
+    height: 42px;
     bottom: 8px;
     margin-left: 8px;
 
     @media screen and (max-width: 786px) {
       width: 37px;
+      height: 37px;
     }
   }
 }
 
-// Hover styles
 .weather_icon:hover,
 .sunIcon:hover {
   transform: scale(1.1);

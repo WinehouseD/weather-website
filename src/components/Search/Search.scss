@@ -26,6 +26,7 @@
 
 .searchBtn {
   width: 25px;
+  height: 25px;
   cursor: pointer;
   padding: 0.8rem 0 0 0.19rem;
   transition: transform 0.1s;
@@ -33,6 +34,7 @@
 
   @media screen and (max-width: 786px) {
     width: 19px;
+    height: 19px;
   }
 
   &:hover {

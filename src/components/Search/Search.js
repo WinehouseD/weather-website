@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Search.scss";
+import useDebounce from "../../hooks/useDebounce";
 
 function Search({ town, setTown, handleSearch }) {
   const handleKeyDown = (event) => {
@@ -7,6 +8,12 @@ function Search({ town, setTown, handleSearch }) {
       handleSearch();
     }
   };
+  const debouncedSearch = useDebounce(town, 500);
+
+  useEffect(() => {
+    if (debouncedSearch) {
+    }
+  }, [debouncedSearch]);
 
   return (
     <div className="inp-field">
@@ -25,6 +32,7 @@ function Search({ town, setTown, handleSearch }) {
           alt="search"
           data-toggle="tooltip"
           title="Search"
+          loading="lazy"
         ></img>
       </div>
     </div>

@@ -26,6 +26,7 @@ const HourlyForecast = ({ hourlyForecast }) => {
                   src={`icons/${data.weather[0].icon}.svg`}
                   data-toggle="tooltip"
                   title={data.weather[0].description}
+                  loading="lazy"
                 />
                 <div
                   className="temperature"
@@ -44,6 +45,7 @@ const HourlyForecast = ({ hourlyForecast }) => {
                     className="waterDrop"
                     src="icons/water-drop.svg"
                     alt="water-drop"
+                    loading="lazy"
                   ></img>
                   <div>
                     {data.pop === 0 || data.pop === 1
