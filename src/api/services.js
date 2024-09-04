@@ -1,18 +1,26 @@
-import axios from "axios";
+import axios from 'axios';
 
-export const fetchCurrentWeather = (town, setCurrentWeather) => {
-  const url = `${process.env.REACT_APP_WEATHER_URL}/weather?q=${town}&units=metric&appid=${process.env.REACT_APP_WEATHER_KEY}`;
+export const fetchCurrentWeather = async (town, setCurrentWeather) => {
+  const currentWeatherUrl = `${process.env.REACT_APP_CURRENT_WEATHER_URL}/current.json?key=${process.env.REACT_APP_CURRENT_WEATHER_KEY}&q=${town}&aqi=yes`;
+  const additionalWeatherUrl  = `${process.env.REACT_APP_WEATHER_URL}/weather?q=${town}&units=metric&appid=${process.env.REACT_APP_WEATHER_KEY}`;
 
-  axios
-    .get(url)
-    .then((response) => {
-      setCurrentWeather(response.data);
-      localStorage.setItem("currentWeather", JSON.stringify(response.data));
-    })
-    .catch((error) => {
-      console.log("Error:", error);
-      alert("The entered city does not exist.");
-    });
+  try {
+    const [currentWeatherResponse, additionalWeatherResponse] = await Promise.all([
+      axios.get(currentWeatherUrl),
+      axios.get(additionalWeatherUrl)
+    ]);
+
+    const combinedData = {
+      currentWeather: currentWeatherResponse.data,
+      additionalWeather: additionalWeatherResponse.data,
+    };
+
+    setCurrentWeather(combinedData);
+    localStorage.setItem("currentWeather", JSON.stringify(combinedData));
+  } catch (error) {
+    console.error("Error fetching weather data:", error);
+    alert("The entered city does not exist or there was an error fetching the data.");
+  }
 };
 
 export const fetchHourlyForecast = (town, setHourlyForecast) => {

@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import ErrorBoundary from "./ErrorBoundary ";
 import Loading from "./components/loader/Loading";
-import Search from "./components/search/Search";
+import Search from "./components/Search/Search";
 import Geolocation from "./Geolocation";
 import CurrentWeather from "./components/currentWeather/CurrentWeather";
 import HourlyForecast from "./components/hourlyForecast/HourlyForecast";
@@ -50,13 +50,13 @@ function App() {
     }
   }, []);
 
-  const handleSearch = () => {
+  const handleSearch = useCallback(() => {
     fetchCurrentWeather(town, setCurrentWeather);
     fetchHourlyForecast(town, setHourlyForecast);
     fetchDailyForecast(town, setDailyForecast);
     setTown("");
     setLoadingLocation(false);
-  };
+  }, [town]);
 
   useEffect(() => {
     if (town === "") {
@@ -66,7 +66,7 @@ function App() {
         setIsLoading(true);
       }
     }
-  }, []);
+  }, [town]);
 
   useEffect(() => {
     if (town !== "" && isLoading) {
@@ -75,7 +75,7 @@ function App() {
       handleSearch();
       setTown("");
     }
-  }, [town]);
+  }, [town, handleSearch, isLoading]);
 
   const handleLocationWeather = (currentData, hourlyData) => {
     setCurrentWeather(currentData);
@@ -92,11 +92,11 @@ function App() {
     }
   }, [loadingLocation]);
 
-  const partOfDay = hourlyForecast[0]?.sys?.pod;
+  const partOfDay = currentWeather?.current?.is_day;
 
   return (
     <ErrorBoundary>
-      <div className={`app ${partOfDay === "n" ? "appNight" : "appDay"}`}>
+      <div className={`app ${partOfDay === 0 ? "appNight" : "appDay"}`}>
         {isLoading ? (
           <Loading />
         ) : (
@@ -105,14 +105,13 @@ function App() {
               className="logo"
               src="icons/logo.svg"
               alt="logo"
-              loading="lazy"
             ></img>
             <Search town={town} setTown={setTown} handleSearch={handleSearch} />
             <Geolocation onWeatherData={handleLocationWeather} />
             {hourlyForecast.length > 0 && (
               <HourlyForecast hourlyForecast={hourlyForecast} />
             )}
-            <CurrentWeather currentWeather={currentWeather} />
+              <CurrentWeather currentWeather={currentWeather} />
             <DailyForecast
               dailyForecast={dailyForecast}
               selectedDay={selectedDay}

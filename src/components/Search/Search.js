@@ -1,19 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./Search.scss";
 import useDebounce from "../../hooks/useDebounce";
 
 function Search({ town, setTown, handleSearch }) {
-  const handleKeyDown = (event) => {
-    if (event.key === "Enter") {
-      handleSearch();
-    }
-  };
+  const [debouncedTown, setDebouncedTown] = useState(town);
   const debouncedSearch = useDebounce(town, 500);
 
   useEffect(() => {
-    if (debouncedSearch) {
-    }
+    setDebouncedTown(debouncedSearch);
   }, [debouncedSearch]);
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      handleSearch(debouncedTown);
+    }
+  };
+
+const handleButtonClick = () => {
+  handleSearch(debouncedTown)
+}
 
   return (
     <div className="inp-field">
@@ -22,13 +27,13 @@ function Search({ town, setTown, handleSearch }) {
           type="text"
           value={town}
           onChange={(event) => setTown(event.target.value)}
-          placeholder="Enter location EN/UA"
+          placeholder="Enter location EN"
           onKeyDown={handleKeyDown}
         />
         <img
           className="searchBtn"
           src="icons/search.svg"
-          onClick={handleSearch}
+          onClick={handleButtonClick}
           alt="search"
           data-toggle="tooltip"
           title="Search"

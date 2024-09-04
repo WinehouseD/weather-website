@@ -1,24 +1,35 @@
 import React from "react";
-import moment from "moment";
 import "./CurrentWeather.scss";
+import AirQuality from "../AirQuality";
+import dayjs from 'dayjs'
+
+const utc = require('dayjs/plugin/utc');
+const localizedFormat = require('dayjs/plugin/localizedFormat');
 
 const CurrentWeather = ({ currentWeather }) => {
   if (!currentWeather) {
     return null;
   }
 
-  const { main, weather, name, dt, sys } = currentWeather;
+  const {currentWeather: currentData, additionalWeather} = currentWeather;
+  const { main, weather, name, dt, sys } = additionalWeather;
+  const { current } = currentData;
+  const ultraviolet = current.uv;
+
   const temperature = main.temp.toFixed();
   const description = weather[0].main;
   const cityName = name;
   const countryName = sys.country;
-  const date = moment.unix(dt).format("ddd Do (MMM)");
 
-  const sunriseTime = moment.unix(sys.sunrise).format("HH:mm");
-  const sunsetTime = moment.unix(sys.sunset).format("HH:mm");
+dayjs.extend(utc);
+dayjs.extend(localizedFormat);
+
+const date = dayjs.unix(dt).format("ddd DD (MMM)");
+const sunriseTime = dayjs.unix(sys.sunrise).format("HH:mm");
+const sunsetTime = dayjs.unix(sys.sunset).format("HH:mm");
 
   return (
-    <div className="container">
+    <div className="current-weather">
       <div className="header">
         <div className="city" data-toggle="tooltip" title={`City, Country`}>
           <p>
@@ -34,7 +45,7 @@ const CurrentWeather = ({ currentWeather }) => {
             <img
               alt="icon"
               className="weather_icon"
-              src={`icons/${weather[0].icon}.svg`}
+              src={`icons/${additionalWeather.weather[0].icon}.svg`}
               data-toggle="tooltip"
               title="Description"
               loading="lazy"
@@ -68,6 +79,28 @@ const CurrentWeather = ({ currentWeather }) => {
           <p>{sunsetTime}</p>
         </div>
       </div>
+        <div className="ultraviolet" data-togle="tooltip" title="Ultraviolet">
+        <img
+              alt="icon"
+              className="uv"
+              src={`icons/uv.svg`}
+              data-toggle="tooltip"
+              title="Ultraviolet"
+              loading="lazy"
+            />
+          <p>{ultraviolet}</p>
+          <div className="airQuality">
+          <img
+              alt="icon"
+              className="aqi"
+              src={`icons/aqi.svg`}
+              data-toggle="tooltip"
+              title="Air Quality"
+              loading="lazy"
+              />
+              <AirQuality currentWeather={currentWeather} />
+          </div>
+        </div>
     </div>
   );
 };

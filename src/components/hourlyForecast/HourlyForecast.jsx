@@ -1,5 +1,5 @@
 import React from "react";
-import moment from "moment";
+import dayjs from 'dayjs';
 import "./HourlyForecast.scss";
 
 const HourlyForecast = ({ hourlyForecast }) => {
@@ -18,7 +18,7 @@ const HourlyForecast = ({ hourlyForecast }) => {
             .map((data) => (
               <div key={data.dt}>
                 <div className="hour" data-toggle="tooltip" title={"Time"}>
-                  {moment.unix(data.dt).format("HH:mm")}
+                  {dayjs.unix(data.dt).format("HH:mm")}
                 </div>
                 <img
                   alt="icon"

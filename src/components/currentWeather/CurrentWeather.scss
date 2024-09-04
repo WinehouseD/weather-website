@@ -1,7 +1,7 @@
 $primary-color: #3498db;
 $font-size: 16px;
 
-.container {
+.current-weather {
   margin: 40vh 0 0 14vh;
   position: fixed;
 
@@ -135,9 +135,25 @@ $font-size: 16px;
   }
 }
 
+.ultraviolet {
+  margin-left: 3vh;
+  display: flex;
+  flex-direction: row;
+  margin-top: -4.5px;
+
+  @media screen and (max-width: 786px) {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+  }
+}
+
 .sunrise,
 .sunset,
-.time {
+.time,
+.ultraviolet,
+.airQuality
+{
   p {
     font-size: 1.4rem;
     padding: 0 0 0 0.7rem;
@@ -159,7 +175,9 @@ $font-size: 16px;
 }
 
 .sunrise,
-.sunset {
+.sunset,
+.airQuality,
+.ultraviolet {
   display: flex;
 
   .sunIcon {
@@ -176,7 +194,34 @@ $font-size: 16px;
   }
 }
 
+.uv {
+  position: relative;
+  width: 39px;
+  height: 39px;
+  bottom: 8px;
+  margin-left: 8px;
+
+  @media screen and (max-width: 786px) {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+.aqi {
+  width: 35px;
+  height: 35px;
+  bottom: 8px;
+  margin-left: 8px;
+  margin-top: -3px;
+
+  @media screen and (max-width: 786px) {
+    margin-top: -5px;
+    width: 32px;
+    height: 32px;
+  }
+}
+
 .weather_icon:hover,
-.sunIcon:hover {
+.sunIcon:hover, .aqi:hover, .uv:hover {
   transform: scale(1.1);
 }
