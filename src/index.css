@@ -86,27 +86,13 @@
   }
 }
 
-.geo_icon {
-  position: fixed;
-  height: 27px;
-  width: 27px;
-  right: 0;
-  top: 0;
-  margin: 1.7rem 1.7rem 0 0;
-  cursor: pointer;
-  transition: transform 0.1s;
-}
-
-@media screen and (max-width: 786px) {
-  .geo_icon {
-    position: absolute;
-    height: 1.6rem;
-    width: 1.6rem;
-    margin: 1rem 1rem 0 0;
-  }
-}
-
-.logo:hover,
-.geo_icon:hover {
+.logo:hover{
   transform: scale(1.1);
+}
+
+.Toastify__toast-container {
+  width: auto !important;
+  height: auto !important;
+  position: fixed !important;
+  z-index: 9999 !important;
 }

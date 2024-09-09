@@ -4,7 +4,7 @@ const airQualityDescriptions =  {
   0: { label: "Good"},
   1: { label: "Moderate",},
   2: { label: "Unhealthy",},
-  3: { label: "Unhealthy for Sensitives"},
+  3: { label: "Pollen Warning",},
   4: { label: "Very Unhealthy",},
   5: { label: "Hazardous",},
 };

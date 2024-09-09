@@ -1,8 +1,8 @@
 import { useState, useEffect, useCallback } from "react";
+import 'react-toastify/dist/ReactToastify.css';
 import ErrorBoundary from "./ErrorBoundary ";
 import Loading from "./components/loader/Loading";
 import Search from "./components/Search/Search";
-import Geolocation from "./Geolocation";
 import CurrentWeather from "./components/currentWeather/CurrentWeather";
 import HourlyForecast from "./components/hourlyForecast/HourlyForecast";
 import DailyForecast from "./components/dailyForecast/DailyForecast";
@@ -11,6 +11,7 @@ import {
   fetchHourlyForecast,
   fetchDailyForecast,
 } from "./api/services";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -19,12 +20,11 @@ function App() {
   const [hourlyForecast, setHourlyForecast] = useState([]);
   const [dailyForecast, setDailyForecast] = useState([]);
   const [selectedDay, setSelectedDay] = useState(null);
-  const [loadingLocation, setLoadingLocation] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
-    }, 1500);
+    }, 1000);
   }, []);
 
   useEffect(() => {
@@ -55,7 +55,6 @@ function App() {
     fetchHourlyForecast(town, setHourlyForecast);
     fetchDailyForecast(town, setDailyForecast);
     setTown("");
-    setLoadingLocation(false);
   }, [town]);
 
   useEffect(() => {
@@ -77,41 +76,38 @@ function App() {
     }
   }, [town, handleSearch, isLoading]);
 
-  const handleLocationWeather = (currentData, hourlyData) => {
-    setCurrentWeather(currentData);
-    setHourlyForecast(hourlyData.list);
-    localStorage.setItem("currentWeather", JSON.stringify(currentData));
-    localStorage.setItem("hourlyForecast", JSON.stringify(hourlyData.list));
-    const cityName = currentData.name;
-    fetchDailyForecast(cityName);
-  };
-
-  useEffect(() => {
-    if (loadingLocation) {
-      Geolocation.getWeatherData(handleLocationWeather);
-    }
-  }, [loadingLocation]);
-
-  const partOfDay = currentWeather?.current?.is_day;
+  const partOfDay = currentWeather?.currentWeather?.current?.is_day;
 
   return (
     <ErrorBoundary>
-      <div className={`app ${partOfDay === 0 ? "appNight" : "appDay"}`}>
+      <div className={`app ${partOfDay === 1 ? "appDay" : "appNight"}`}>
         {isLoading ? (
           <Loading />
         ) : (
           <>
+              <ToastContainer
+               position="top-center"
+               autoClose={2000}
+               hideProgressBar={false}
+               newestOnTop={false}
+               closeOnClick
+               rtl={false}
+               pauseOnFocusLoss
+               draggable
+               pauseOnHover
+               theme="dark"
+               />
             <img
               className="logo"
               src="icons/logo.svg"
               alt="logo"
-            ></img>
+              loading="lazy"
+              />
             <Search town={town} setTown={setTown} handleSearch={handleSearch} />
-            <Geolocation onWeatherData={handleLocationWeather} />
             {hourlyForecast.length > 0 && (
               <HourlyForecast hourlyForecast={hourlyForecast} />
             )}
-              <CurrentWeather currentWeather={currentWeather} />
+            <CurrentWeather currentWeather={currentWeather} />
             <DailyForecast
               dailyForecast={dailyForecast}
               selectedDay={selectedDay}

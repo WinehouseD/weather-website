@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 export const fetchCurrentWeather = async (town, setCurrentWeather) => {
   const currentWeatherUrl = `${process.env.REACT_APP_CURRENT_WEATHER_URL}/current.json?key=${process.env.REACT_APP_CURRENT_WEATHER_KEY}&q=${town}&aqi=yes`;
@@ -19,7 +20,7 @@ export const fetchCurrentWeather = async (town, setCurrentWeather) => {
     localStorage.setItem("currentWeather", JSON.stringify(combinedData));
   } catch (error) {
     console.error("Error fetching weather data:", error);
-    alert("The entered city does not exist or there was an error fetching the data.");
+    toast.info("The entered city does not exist or there was an error fetching the data.");
   }
 };
 

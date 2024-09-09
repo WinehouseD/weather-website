@@ -8,25 +8,25 @@ const localizedFormat = require('dayjs/plugin/localizedFormat');
 
 const CurrentWeather = ({ currentWeather }) => {
   if (!currentWeather) {
-    return null;
-  }
-
+      return null;
+    } 
+    
   const {currentWeather: currentData, additionalWeather} = currentWeather;
-  const { main, weather, name, dt, sys } = additionalWeather;
   const { current } = currentData;
-  const ultraviolet = current.uv;
+    const ultraviolet = current.uv;
 
-  const temperature = main.temp.toFixed();
-  const description = weather[0].main;
-  const cityName = name;
-  const countryName = sys.country;
-
-dayjs.extend(utc);
-dayjs.extend(localizedFormat);
-
-const date = dayjs.unix(dt).format("ddd DD (MMM)");
-const sunriseTime = dayjs.unix(sys.sunrise).format("HH:mm");
-const sunsetTime = dayjs.unix(sys.sunset).format("HH:mm");
+  const { main, weather, name, dt, sys } = additionalWeather;
+    const temperature = main.temp.toFixed();
+    const description = weather[0].main;
+    const cityName = name;
+    const countryName = sys.country;
+  
+  dayjs.extend(utc);
+  dayjs.extend(localizedFormat);
+  
+  const date = dayjs.unix(dt).format("ddd DD (MMM)");
+  const sunriseTime = dayjs.unix(sys.sunrise).format("HH:mm");
+  const sunsetTime = dayjs.unix(sys.sunset).format("HH:mm");
 
   return (
     <div className="current-weather">
