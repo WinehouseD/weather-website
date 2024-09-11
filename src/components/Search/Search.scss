@@ -7,6 +7,31 @@
     text-decoration: none;
   }
 
+  .input-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .input-container input {
+    padding-right: 30px; /* Adjust based on icon size */
+  }
+  
+  .searchBtn {
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-35%);
+    pointer-events: none;
+    height: 23px;
+    width: 23px;
+    opacity: 0.45;
+
+    @media screen and (max-width: 786px) {
+      height: 20px;
+      width: 20px;
+  }
+}
+
   input {
     padding: 0.7rem 1.5rem;
     font-size: 1.13rem;
@@ -24,20 +49,59 @@
   }
 }
 
-.searchBtn {
-  width: 25px;
-  height: 25px;
+.info-icon {
+  width: 19px;
+  height: 19px;
   cursor: pointer;
-  padding: 0.8rem 0 0 0.19rem;
+  padding: 0.8rem 0 0 0.25rem;
   transition: transform 0.1s;
-  position: relative;
+  position: relative; 
+  top: -6px;
 
   @media screen and (max-width: 786px) {
-    width: 19px;
-    height: 19px;
+    width: 17px;
+    height: 17px;
   }
 
   &:hover {
     transform: scale(1.1);
   }
 }
+
+.suggestion-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}  
+
+.suggestions {
+  position: absolute;
+  top: 8%;
+  z-index: 100;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  border: 1px solid rgb(128, 128, 128);
+  background: rgb(0, 0, 0);
+  opacity: 0.8;
+  max-height: 200px;
+  overflow-y: auto;
+  width: 50%;
+
+  @media screen and (max-width: 786px) {
+    width: 100%;
+  }
+}
+
+.suggestions li {
+  padding: 10px;
+  cursor: pointer;
+
+  &:hover {
+    background-color:  rgb(128, 128, 128);
+  }
+
+}
+
+.suggestions li.active {
+  background-color: rgb(128, 128, 128);}

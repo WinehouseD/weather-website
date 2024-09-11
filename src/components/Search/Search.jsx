@@ -1,24 +1,53 @@
 import React, { useEffect, useState } from "react";
 import "./Search.scss";
 import useDebounce from "../../hooks/useDebounce";
+import { fetchAutocomplete } from "../../api/services";
+import { toast } from "react-toastify";
 
 function Search({ town, setTown, handleSearch }) {
-  const [debouncedTown, setDebouncedTown] = useState(town);
+  const [suggestions, setSuggestions] = useState([]);
+  const [activeIndex, setActiveIndex] = useState(-1);
   const debouncedSearch = useDebounce(town, 500);
 
   useEffect(() => {
-    setDebouncedTown(debouncedSearch);
+    if (debouncedSearch && debouncedSearch.length > 2) {
+      fetchAutocomplete(debouncedSearch)
+        .then((suggestions) => {
+          setSuggestions(suggestions);
+        })
+        .catch((error) => {
+          console.error(error);
+          toast.info("The entered city does not exist or there was an error fetching the data.");
+          setSuggestions([]);
+        });
+    } else {
+      setSuggestions([]);
+    }
   }, [debouncedSearch]);
 
   const handleKeyDown = (event) => {
-    if (event.key === "Enter") {
-      handleSearch(debouncedTown);
+    if (event.key === "ArrowDown") {
+      setActiveIndex((prevIndex) => (prevIndex + 1) % suggestions.length);
+    } else if (event.key === "ArrowUp") {
+      setActiveIndex((prevIndex) => (prevIndex - 1 + suggestions.length) % suggestions.length);
+    } else if (event.key === "Enter") {
+      if (activeIndex >= 0 && activeIndex < suggestions.length) {
+        handleSuggestionClick(suggestions[activeIndex]);
+      } else {
+        handleSearch(town);
+      }
     }
   };
 
-const handleButtonClick = () => {
-  handleSearch(debouncedTown)
-}
+  const handleButtonClick = () => {
+    handleSearch(town);
+  };
+
+  const handleSuggestionClick = (suggestion) => {
+    setTown(suggestion.name);
+    setSuggestions([]);
+    handleSearch(suggestion.name);
+  };
 
   return (
     <div className="inp-field">
@@ -38,7 +67,23 @@ const handleButtonClick = () => {
           data-toggle="tooltip"
           title="Search"
           loading="lazy"
-        ></img>
+        />
+        <img className="info-icon" src="icons/info.svg" alt="info" loading="lazy" data-toggle="tooltip" title="Some cities might not be supported. Type full name."/>
+      </div>
+      <div className="suggestion-container">
+      {suggestions.length > 0 && (
+        <ul className="suggestions">
+          {suggestions.map((suggestion, index) => (
+            <li
+              key={index}
+              className={index === activeIndex ? 'active' : ''}
+              onClick={() => handleSuggestionClick(suggestion)}
+            >
+              {suggestion.name}, {suggestion.country}
+            </li>
+          ))}
+        </ul>
+      )}
       </div>
     </div>
   );

@@ -20,7 +20,6 @@ export const fetchCurrentWeather = async (town, setCurrentWeather) => {
     localStorage.setItem("currentWeather", JSON.stringify(combinedData));
   } catch (error) {
     console.error("Error fetching weather data:", error);
-    toast.info("The entered city does not exist or there was an error fetching the data.");
   }
 };
 
@@ -51,4 +50,17 @@ export const fetchDailyForecast = (town, setDailyForecast) => {
       localStorage.setItem("dailyForecast", JSON.stringify(dailyData));
     })
     .catch((error) => console.error("Error:", error));
+};
+
+export const fetchAutocomplete = async (town) => {
+  const url = `${process.env.REACT_APP_SEARCH_URL}key=${process.env.REACT_APP_CURRENT_WEATHER_KEY}&q=${town}`;
+
+  try {
+    const response = await axios.get(url);
+    return response.data;
+  } catch (error) {
+    console.error("Error:", error);
+    toast.info("The entered city does not exist or there was an error fetching the data.");
+    return [];
+  }
 };

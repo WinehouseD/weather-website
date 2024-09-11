@@ -50,12 +50,12 @@ function App() {
     }
   }, []);
 
-  const handleSearch = useCallback(() => {
-    fetchCurrentWeather(town, setCurrentWeather);
-    fetchHourlyForecast(town, setHourlyForecast);
-    fetchDailyForecast(town, setDailyForecast);
+  const handleSearch = useCallback((selectedTown) => {
+    fetchCurrentWeather(selectedTown, setCurrentWeather);
+    fetchHourlyForecast(selectedTown, setHourlyForecast);
+    fetchDailyForecast(selectedTown, setDailyForecast);
     setTown("");
-  }, [town]);
+  }, []);
 
   useEffect(() => {
     if (town === "") {
@@ -71,7 +71,7 @@ function App() {
     if (town !== "" && isLoading) {
       setIsLoading(false);
       localStorage.clear();
-      handleSearch();
+      handleSearch(town);
       setTown("");
     }
   }, [town, handleSearch, isLoading]);
