@@ -27,14 +27,14 @@
   }
 }
 
-.titleDaily {
+.title-daily {
   text-align: left;
   letter-spacing: 1px;
   font-size: 1.4rem;
   padding: 1.2vh 0;
 }
 
-.forecastDaily {
+.forecast-daily {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -69,10 +69,14 @@
   }
 }
 
-.iconDaily {
+.icon-daily {
   height: 2.35rem;
   width: 2.35rem;
   transition: transform 0.1s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 }
 
 .temps {
@@ -90,6 +94,10 @@
   width: 2rem;
   height: 2rem;
   transition: transform 0.1s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 }
 
 .popup {
@@ -147,10 +155,14 @@
     transition: transform 0.1s;
     width: 2.3rem;
     height: 2.3rem;
+
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 }
 
-.closeBtn {
+.close-btn {
   position: fixed;
   right: 0;
   top: 0;
@@ -160,10 +172,7 @@
   height: 1.8rem;
   transition: transform 0.1s;
 
-  &:hover,
-  .iconDaily:hover,
-  .detailsIcon:hover,
-  .details-icon:hover {
+  &:hover {
     transform: scale(1.1);
   }
 }

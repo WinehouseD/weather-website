@@ -152,7 +152,7 @@ $font-size: 16px;
 .sunset,
 .time,
 .ultraviolet,
-.airQuality
+.air-quality
 {
   p {
     font-size: 1.4rem;
@@ -176,11 +176,11 @@ $font-size: 16px;
 
 .sunrise,
 .sunset,
-.airQuality,
+.air-quality,
 .ultraviolet {
   display: flex;
 
-  .sunIcon {
+  .sun-icon {
     position: relative;
     width: 42px;
     height: 42px;
@@ -221,7 +221,7 @@ $font-size: 16px;
   }
 }
 
-.weather_icon:hover,
-.sunIcon:hover, .aqi:hover, .uv:hover {
+.weather-icon:hover,
+.sun-icon:hover, .aqi:hover, .uv:hover {
   transform: scale(1.1);
 }

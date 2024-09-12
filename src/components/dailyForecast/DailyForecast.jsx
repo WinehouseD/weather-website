@@ -26,7 +26,7 @@ const DailyForecast = ({ dailyForecast, selectedDay, setSelectedDay }) => {
 
   return (
     <div className="daily-forecast">
-      <h1 className="titleDaily">5-Day Forecast</h1>
+      <h1 className="title-daily">5-Day Forecast</h1>
       <hr />
       {dailyForecast.slice(0, 6).map((item, idx) => {
         const forecastDayIndex = (tomorrowIndex + idx) % WEEK_DAYS.length;
@@ -36,7 +36,7 @@ const DailyForecast = ({ dailyForecast, selectedDay, setSelectedDay }) => {
 
         return (
           <div
-            className="forecastDaily"
+            className="forecast-daily"
             key={idx}
             onClick={() => openPopup(item)}
           >
@@ -44,7 +44,7 @@ const DailyForecast = ({ dailyForecast, selectedDay, setSelectedDay }) => {
               {dayName} {dayOfMonth}
             </div>
             <img
-              className="iconDaily"
+              className="icon-daily"
               src={`icons/${item.weather[0].icon}.svg`}
               alt="weather"
               data-toggle="tooltip"
@@ -70,7 +70,7 @@ const DailyForecast = ({ dailyForecast, selectedDay, setSelectedDay }) => {
             <img
               data-toggle="tooltip"
               title="Close"
-              className="closeBtn"
+              className="close-btn"
               src="icons/close-button.svg"
               alt="close"
               onClick={closePopup}

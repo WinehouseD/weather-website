@@ -44,7 +44,7 @@ const CurrentWeather = ({ currentWeather }) => {
           <p>
             <img
               alt="icon"
-              className="weather_icon"
+              className="weather-icon"
               src={`icons/${additionalWeather.weather[0].icon}.svg`}
               data-toggle="tooltip"
               title="Description"
@@ -62,7 +62,7 @@ const CurrentWeather = ({ currentWeather }) => {
         </div>
         <div className="sunrise" data-toggle="tooltip" title="Sunrise">
           <img
-            className="sunIcon"
+            className="sun-icon"
             src="icons/sunrise.svg"
             alt="sunrise"
             loading="lazy"
@@ -71,7 +71,7 @@ const CurrentWeather = ({ currentWeather }) => {
         </div>
         <div className="sunset" data-toggle="tooltip" title="Sunset">
           <img
-            className="sunIcon"
+            className="sun-icon"
             src="icons/sunset.svg"
             alt="sunset"
             loading="lazy"
@@ -89,7 +89,7 @@ const CurrentWeather = ({ currentWeather }) => {
               loading="lazy"
             />
           <p>{ultraviolet}</p>
-          <div className="airQuality">
+          <div className="air-quality">
           <img
               alt="icon"
               className="aqi"

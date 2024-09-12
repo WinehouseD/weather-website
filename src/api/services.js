@@ -19,7 +19,7 @@ export const fetchCurrentWeather = async (town, setCurrentWeather) => {
     setCurrentWeather(combinedData);
     localStorage.setItem("currentWeather", JSON.stringify(combinedData));
   } catch (error) {
-    console.error("Error fetching weather data:", error);
+    toast.info("The entered city does not exist or there was an error fetching the data.");
   }
 };
 
@@ -60,7 +60,6 @@ export const fetchAutocomplete = async (town) => {
     return response.data;
   } catch (error) {
     console.error("Error:", error);
-    toast.info("The entered city does not exist or there was an error fetching the data.");
     return [];
   }
 };

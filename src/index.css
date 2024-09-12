@@ -93,6 +93,4 @@
 .Toastify__toast-container {
   width: auto !important;
   height: auto !important;
-  position: fixed !important;
-  z-index: 9999 !important;
 }

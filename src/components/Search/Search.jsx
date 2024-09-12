@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./Search.scss";
 import useDebounce from "../../hooks/useDebounce";
 import { fetchAutocomplete } from "../../api/services";
-import { toast } from "react-toastify";
 
 function Search({ town, setTown, handleSearch }) {
   const [suggestions, setSuggestions] = useState([]);
@@ -15,9 +14,7 @@ function Search({ town, setTown, handleSearch }) {
         .then((suggestions) => {
           setSuggestions(suggestions);
         })
-        .catch((error) => {
-          console.error(error);
-          toast.info("The entered city does not exist or there was an error fetching the data.");
+        .catch(() => {
           setSuggestions([]);
         });
     } else {
@@ -39,10 +36,6 @@ function Search({ town, setTown, handleSearch }) {
     }
   };
 
-  const handleButtonClick = () => {
-    handleSearch(town);
-  };
-
   const handleSuggestionClick = (suggestion) => {
     setTown(suggestion.name);
     setSuggestions([]);
@@ -58,17 +51,16 @@ function Search({ town, setTown, handleSearch }) {
           onChange={(event) => setTown(event.target.value)}
           placeholder="Enter location EN"
           onKeyDown={handleKeyDown}
-        />
-        <img
-          className="searchBtn"
-          src="icons/search.svg"
-          onClick={handleButtonClick}
-          alt="search"
           data-toggle="tooltip"
           title="Search"
+        />
+        <img
+          className="search-icon"
+          src="icons/search.svg"
+          alt="search"
           loading="lazy"
         />
-        <img className="info-icon" src="icons/info.svg" alt="info" loading="lazy" data-toggle="tooltip" title="Some cities might not be supported. Type full name."/>
+        <img className="info-icon" src="icons/info.svg" alt="info" loading="lazy" data-toggle="tooltip" title="Some cities might not be supported."/>
       </div>
       <div className="suggestion-container">
       {suggestions.length > 0 && (

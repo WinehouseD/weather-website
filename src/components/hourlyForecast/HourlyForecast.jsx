@@ -9,7 +9,7 @@ const HourlyForecast = ({ hourlyForecast }) => {
 
   return (
     <div className="hourly-forecast">
-      <h1 className="titleHour">Hourly Forecast</h1>
+      <h1 className="title-hour">Hourly Forecast</h1>
       <hr />
       <div className="info">
         {Array.isArray(hourlyForecast) &&
@@ -22,7 +22,7 @@ const HourlyForecast = ({ hourlyForecast }) => {
                 </div>
                 <img
                   alt="icon"
-                  className="iconHourly"
+                  className="icon-hourly"
                   src={`icons/${data.weather[0].icon}.svg`}
                   data-toggle="tooltip"
                   title={data.weather[0].description}
@@ -42,7 +42,7 @@ const HourlyForecast = ({ hourlyForecast }) => {
                   title={"Precipitation"}
                 >
                   <img
-                    className="waterDrop"
+                    className="water-drop"
                     src="icons/water-drop.svg"
                     alt="water-drop"
                     loading="lazy"
