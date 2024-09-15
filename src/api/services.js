@@ -53,7 +53,7 @@ export const fetchDailyForecast = (town, setDailyForecast) => {
 };
 
 export const fetchAutocomplete = async (town) => {
-  const url = `${process.env.REACT_APP_SEARCH_URL}key=${process.env.REACT_APP_CURRENT_WEATHER_KEY}&q=${town}`;
+  const url = `${process.env.REACT_APP_CURRENT_WEATHER_URL}/search.json?key=${process.env.REACT_APP_CURRENT_WEATHER_KEY}&q=${town}`;
 
   try {
     const response = await axios.get(url);
