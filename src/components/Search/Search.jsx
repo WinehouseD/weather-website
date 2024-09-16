@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Search.scss";
 import useDebounce from "../../hooks/useDebounce";
 import { fetchAutocomplete } from "../../api/services";
+import { toast } from "react-toastify";
 
 function Search({ town, setTown, handleSearch }) {
   const [suggestions, setSuggestions] = useState([]);
@@ -42,6 +43,10 @@ function Search({ town, setTown, handleSearch }) {
     handleSearch(suggestion.name);
   };
 
+  const hoverText = () =>{
+    toast.info('Some cities might not be supported.');
+  }
+
   return (
     <div className="inp-field">
       <div className="input-container">
@@ -60,7 +65,7 @@ function Search({ town, setTown, handleSearch }) {
           alt="search"
           loading="lazy"
         />
-        <img className="info-icon" src="icons/info.svg" alt="info" loading="lazy" data-toggle="tooltip" title="Some cities might not be supported."/>
+        <img className="info-icon" src="icons/info.svg" alt="info" loading="lazy" data-toggle="tooltip" title="info" onMouseEnter={hoverText}/>
       </div>
       <div className="suggestion-container">
       {suggestions.length > 0 && (

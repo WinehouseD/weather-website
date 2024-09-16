@@ -59,20 +59,18 @@ function App() {
 
   useEffect(() => {
     if (town === "") {
-      const townName = JSON.parse(localStorage.getItem("currentWeather"))?.name;
+      const townName = JSON.parse(localStorage.getItem("currentWeather"))?.additionalWeather.name;
       if (townName !== null && townName !== "" && townName !== undefined) {
         setTown(townName);
         setIsLoading(true);
       }
     }
-  }, [town]);
+  }, []);
 
   useEffect(() => {
     if (town !== "" && isLoading) {
       setIsLoading(false);
-      localStorage.clear();
       handleSearch(town);
-      setTown("");
     }
   }, [town, handleSearch, isLoading]);
 
@@ -80,14 +78,14 @@ function App() {
 
   return (
     <ErrorBoundary>
-      <div className={`app ${partOfDay === 1 ? "appDay" : "appNight"}`}>
+      <div className={`app ${partOfDay === 0 ? "appNight" : "appDay"}`}>
         {isLoading ? (
           <Loading />
         ) : (
           <>
               <ToastContainer
                position="top-center"
-               autoClose={2000}
+               autoClose={1500}
                hideProgressBar={false}
                newestOnTop={false}
                closeOnClick
